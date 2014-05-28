@@ -25,7 +25,10 @@ public class User extends BaseEntity implements Serializable{
 			String education, String job, String city, String email,
 			String password, int accesLevel) {
 
-		if ((nikname != "") && (password !="")) {
+		if (nikname.equals("") || password.equals("") || nikname == null || password == null) {
+			new throw ("Error");
+		}
+		else {
 			this.nikname = nikname;
 			this.name = name;
 			this.surname = surname;
