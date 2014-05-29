@@ -26,7 +26,7 @@ public class User extends BaseEntity implements Serializable{
 			String password, int accesLevel) {
 
 		if (nikname.equals("") || password.equals("") || nikname == null || password == null) {
-			new throw ("Error");
+			throw new IllegalStateException ("Incorrect data for user");
 		}
 		else {
 			this.nikname = nikname;

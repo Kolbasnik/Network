@@ -24,7 +24,7 @@ public class FileUserRepository extends MemoryUserRepository implements UserRepo
 	
 	/**
 	 * The constructor for the user repository;
-	 * The user repository include the list of all users
+	 * The user re pository include the list of all users
 	 * and the date they were saved.
 	 */
 	public FileUserRepository (String path) {
