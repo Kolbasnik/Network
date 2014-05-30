@@ -5,15 +5,9 @@
 <head> 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
 
+<jsp:include page="header.jsp"></jsp:include> 
+
 <title>Friends online</title> 
-	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/superfish.css" media="screen">
-	<link rel="stylesheet" type="text/css" href="css/prettyPhoto.css" media="screen"/>
-
-	<div id="slider" class="header">
-		<img src="images/slide1.jpg" alt="" title="#htmlcaption" alighn ="centre"/>
-	</div>
-
 	<script type="text/javascript">
 		function validate() {
 			var login=document.getElementById("login");
@@ -32,9 +26,9 @@
 </script>
 
 </head> 
-</head> 
 
-<body> 
+<body>
+
 <div id="wrapper">
 	<div id="top">
 		<header id="header">
