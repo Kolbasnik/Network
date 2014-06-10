@@ -51,42 +51,40 @@
 	<div>
 <!-- 	nikname, name, surname, birthDay, education, job, city, email, password, accesLevel -->
 
+		 <form name="new_user" id =new_user action="registration.jsp" method="post">
 		<table>
-		 <tbody>
-		 <form name="new_user" action=index.jsp" method="post">
-			<td>
-				<tr>Nickname: </tr>
-				<tr> <input type="text" id="nickname"></tr>
-			</td>
-			<td>
-				<tr>Name: </tr>
-				<tr><input type="text" id="name"></tr>
-			</td>
-			<td>
-				<tr>Surname: </tr>
-				<tr><input type="text" id="surname"></tr>
-			</td>
-			<td>
-				<tr>Education: </tr>
-				<tr><input type="text" id="education"></tr>
-			</td>
-			<td>
-				<tr>E-mail: </tr>
-				<tr><input type="text" id="email"></tr>
-			</td>
-			<td>
-				<tr>Password: </tr>
-				<tr><input type="password" id="password"></tr>>
-			</td>
-			<td>
-				<tr><input type="hiden" id "redirect" '<%=request.getParameter("redirect")%>'></tr> 
-				<tr><input type="submit" value="Save user"></tr>>
-			</td>
-	</form>
+			<tr>
+				<td>Nickname: </td>
+				<td> <input type="text" id="nickname" ></td>
+			</tr>
+			<tr>
+				<td>Name: </td>
+				<td><input type="text" id="name"></td>
+			</tr>
+			<tr>
+				<td>Surname: </td>
+				<td><input type="text" id="surname"></td>
+			</tr>
+			<tr>
+				<td>Education: </td>
+				<td><input type="text" id="education"></td>
+			</tr>
+			<tr>
+				<td>E-mail: </td>
+				<td><input type="text" id="email"></td>
+			</tr>
+			<tr>
+				<td>Password: </td>
+				<td><input type="password" id="password"></td>
+			</tr>
+			<tr>
+				<td><input type="hiden" id "redirect" '<%=request.getParameter("redirect")%>'> 
+				<input type="submit" value="Save user"></td>
+			</tr>
 	
-</tbody>
-	
-</table>
+		</table>
+		</form>
+		
 	</div>
 
 	
