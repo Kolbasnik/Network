@@ -21,12 +21,12 @@
 			<div class="three-fourth column-last">
 				<nav id="navigation">
 					<ul id="mainnav">
-						<li><a class="current" href="index.jsp">MY PAGE</a></li>
+						<li><a href="index.jsp">MY PAGE</a></li>
 						<li><a href="index.jsp">MY MESSAGES</a></li>
 						<li><a href="index.jsp">MY WALL</a></li>
 						<li><a href="index.jsp">MY FRIENDS</a></li>
 						<li><a href="index.jsp">OUT</a></li>
-						<li><a href="registration.jsp">REGISTRATION</a></li>
+						<li><a class="current" href="registration.jsp">REGISTRATION</a></li>
 					</ul>
 				</nav><!--end navigation-->
 			</div><!--end three-fourth-->
@@ -46,6 +46,49 @@
 			</form>
 		<%}%>
 	</div><!--end centered-wrapper-->
+
+
+	<div>
+<!-- 	nikname, name, surname, birthDay, education, job, city, email, password, accesLevel -->
+
+		<table>
+		 <tbody>
+		 <form name="new_user" action=index.jsp" method="post">
+			<td>
+				<tr>Nickname: </tr>
+				<tr> <input type="text" id="nickname"></tr>
+			</td>
+			<td>
+				<tr>Name: </tr>
+				<tr><input type="text" id="name"></tr>
+			</td>
+			<td>
+				<tr>Surname: </tr>
+				<tr><input type="text" id="surname"></tr>
+			</td>
+			<td>
+				<tr>Education: </tr>
+				<tr><input type="text" id="education"></tr>
+			</td>
+			<td>
+				<tr>E-mail: </tr>
+				<tr><input type="text" id="email"></tr>
+			</td>
+			<td>
+				<tr>Password: </tr>
+				<tr><input type="password" id="password"></tr>>
+			</td>
+			<td>
+				<tr><input type="hiden" id "redirect" '<%=request.getParameter("redirect")%>'></tr> 
+				<tr><input type="submit" value="Save user"></tr>>
+			</td>
+	</form>
+	
+</tbody>
+	
+</table>
+	</div>
+
 	
 	<div class="centered-wrapper">
 		<footer id="footer">

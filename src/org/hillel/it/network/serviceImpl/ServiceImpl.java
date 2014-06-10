@@ -11,6 +11,7 @@ import org.hillel.it.network.model.entity.Wall;
 import org.hillel.it.network.persistance.file.FileUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryMessageRepository;
+import org.hillel.it.network.persistance.memory.MemoryUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryWallRepository;
 import org.hillel.it.network.persistance.repository.GroupRepository;
 import org.hillel.it.network.persistance.repository.MessageRepository;
@@ -35,7 +36,7 @@ public class ServiceImpl implements Service, Serializable{
 	 * @param messageRepository -repository for messages
 	 * @param wallRepository  -repository for wall messages
 	 */
-/*
+
 	public ServiceImpl (UserRepository userRepository, GroupRepository groupRepository, MessageRepository messageRepository, WallRepository wallRepository) {
 		if ((userRepository != null) && (groupRepository != null) && (messageRepository != null) && (wallRepository!=null)) {
 			this.userRepository=userRepository;
@@ -44,12 +45,12 @@ public class ServiceImpl implements Service, Serializable{
 			this.wallRepository=wallRepository;
 		}
 	}
-*/	
+	
 	public ServiceImpl () {
-		Configuration config = new Configuration();
+//		Configuration config = new Configuration();
 
-		//		userRepository = new MemoryUserRepository();
-		userRepository = new FileUserRepository(config.getPath());
+		userRepository = new MemoryUserRepository();
+//		userRepository = new FileUserRepository(config.getPath());
 		groupRepository = new MemoryGroupRepository();
 		messageRepository = new MemoryMessageRepository();
 		wallRepository=new MemoryWallRepository();

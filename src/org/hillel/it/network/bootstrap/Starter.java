@@ -22,6 +22,7 @@ import org.hillel.it.network.model.entity.Wall;
 import org.hillel.it.network.persistance.file.FileUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryMessageRepository;
+import org.hillel.it.network.persistance.memory.MemoryUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryWallRepository;
 import org.hillel.it.network.persistance.repository.GroupRepository;
 import org.hillel.it.network.persistance.repository.MessageRepository;
@@ -59,6 +60,7 @@ public class Starter {
 		NetworkPull pull = new ReUsableNetworkPull(Integer.valueOf(config.getMaxConnections()), config.getDbUrl());
 		
 		NetworkDb db = new NetworkDb(pull.getConnection());
+		// http://stackoverflow.com/questions/2362032/howto-access-properties-file-from-java-ee-web-application
 		
 		
 		
@@ -66,8 +68,8 @@ public class Starter {
 		System.out.println(config.getDbUrl());
 		System.out.println(config.getMaxConnections());
 
-//		UserRepository userRepository = new MemoryUserRepository();
-		UserRepository userRepository = new FileUserRepository(config.getPath());
+		UserRepository userRepository = new MemoryUserRepository();
+//		UserRepository userRepository = new FileUserRepository(config.getPath());
 		GroupRepository groupRepository = new MemoryGroupRepository();
 		MessageRepository messageRepository = new MemoryMessageRepository();
 		WallRepository wallRepository=new MemoryWallRepository();

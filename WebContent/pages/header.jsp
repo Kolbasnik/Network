@@ -4,6 +4,24 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Friends online</title>
+<title>Friends online</title> 
+	<script type="text/javascript">
+		function validate() {
+			var login=document.getElementById("login");
+			var password=document.getElementById("password");
+	
+			if (login.value =="") {
+				alert('login must be');
+				return false;
+			}
+			if (password.value =="") {
+				alert('password must be');
+				return false;
+			}
+			return true;
+		}
+	</script>
+
  	<jsp:useBean id="ServiceImpl" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"></jsp:useBean> 
 
 	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
