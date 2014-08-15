@@ -19,7 +19,18 @@ import org.hillel.it.network.persistance.repository.UserRepository;
 import org.hillel.it.network.persistance.repository.WallRepository;
 import org.hillel.it.network.service.Service;
 
+
 public class ServiceImpl implements Service, Serializable{
+	private String text="kuku";
+	
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	/**
 	 * 
 	 */
@@ -65,6 +76,13 @@ public class ServiceImpl implements Service, Serializable{
 			userRepository.saveUser(user);
 		}
 	}
+	
+	
+	public String test () {
+		return "kuku";
+	}
+	
+	
 	/**
 	 * the method for removing the user to the repository
 	 */
