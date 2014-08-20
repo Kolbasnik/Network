@@ -7,8 +7,7 @@
 </head>
 <body>
 	<H1>
-		Login <%=request.getAttribute("login")%><br>
-		Password <%=request.getAttribute("passworsd")%><br>
+		Main text
 	</H1>
 
 </body>
