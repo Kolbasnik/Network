@@ -4,12 +4,11 @@
 <html>
 <head>
 <jsp:include page="header.jsp" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
-	<H1>
-		Login <%=request.getAttribute("login")%><br>
-		Password <%=request.getAttribute("passworsd")%><br>
-	</H1>
-
+Hello Givi!!!
 </body>
 </html>

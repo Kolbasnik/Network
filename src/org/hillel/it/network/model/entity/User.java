@@ -60,9 +60,18 @@ public class User extends BaseEntity implements Serializable{
 		if (searchParam.equalsIgnoreCase(email)) {
 			return true;
 		}
+		
 		return false;
 	}
 
+	public boolean validUser (String searchEmail, String searchPassword) {
+		if (searchEmail.equalsIgnoreCase(email) && searchPassword.equalsIgnoreCase(password)) {
+			return true;
+		}
+
+		return false;
+	}
+	
 	public String getNickname() {
 		return nikname;
 	}

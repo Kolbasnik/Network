@@ -16,6 +16,8 @@ public interface Service {
 	void saveUser(User user);
 	void delUser(User user);
 	User searchUser(String searchParam);
+	String getUserName (Object user);
+	User userIsValidate (String login, String password);
 
 	void saveGroup (Group group);
 	void delGroup (Group group);

@@ -21,17 +21,7 @@ import org.hillel.it.network.service.Service;
 
 
 public class ServiceImpl implements Service, Serializable{
-	private String text="kuku";
-	
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	/**
+		/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -66,7 +56,7 @@ public class ServiceImpl implements Service, Serializable{
 		messageRepository = new MemoryMessageRepository();
 		wallRepository=new MemoryWallRepository();
 	}
-	
+
 	/**
 	 * the method for saving the user to the repository
 	 * 
@@ -77,12 +67,7 @@ public class ServiceImpl implements Service, Serializable{
 		}
 	}
 	
-	
-	public String test () {
-		return "kuku";
-	}
-	
-	
+		
 	/**
 	 * the method for removing the user to the repository
 	 */
@@ -102,6 +87,26 @@ public class ServiceImpl implements Service, Serializable{
 			return null;
 		}
 	}
+	
+	public String getUserName (Object user) {
+		User curUser = (User) user;
+		
+		return curUser.getName();
+	}
+	
+	public User userIsValidate (String login, String password ) {
+
+		User user = searchUser(login);
+	
+		if (user.validUser(login, password)) {
+			return user;
+		}
+		else {
+			return null;
+		}
+	}
+
+	
 /**
  * the method for saving a group to the repository
  */
