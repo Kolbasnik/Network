@@ -7,7 +7,11 @@
 </head>
 <body>
 	<H1>
-		Main text
+		Main text<br>
+		<% 
+String queryData = request.getQueryString();
+out.println("Added data query: " + queryData); 
+%>
 	</H1>
 
 </body>

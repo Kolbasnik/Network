@@ -13,7 +13,6 @@ import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.service.Service;
 
 	@WebServlet(name = "Authorisation", description = "This is a simple servlet with annotations", urlPatterns = "/pages/autorization")
-
 	public class Authorisation extends HttpServlet {
 
 		/**
@@ -31,7 +30,6 @@ import org.hillel.it.network.service.Service;
 			request.getRequestDispatcher("../pages/index.jsp").forward(request,
 					response);
 
-//			response.sendRedirect("../pages/index.jsp");
 		}
 
 		@Override

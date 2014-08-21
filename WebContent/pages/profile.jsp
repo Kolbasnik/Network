@@ -9,6 +9,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello Givi!!!
+	<h1>
+		Nick
+		<%=session.getAttribute("nick")%></h1>
+	<br>
+	<h1>
+		Name
+		<%=session.getAttribute("name")%></h1>
+	<br>
+	<h1>
+		E-mail
+		<%=session.getAttribute("email")%></h1>
+	<br>
+	<h1>
+		Job
+		<%=session.getAttribute("job")%></h1>
+	<br>
 </body>
 </html>

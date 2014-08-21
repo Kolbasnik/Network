@@ -51,7 +51,7 @@
 					<input type="submit" value="Sing in"> 
 				</form>
 				<%} else {	%>
-					<li><a href="profile.jsp">Hi, <%=service.getUserName(session.getAttribute("user"))%></a>
+					<li><a href="profile">Hello, <%=service.getUserName(session.getAttribute("user"))%></a>
 					<form name="form_logout" action="autorization" method="GET">
 						<input type="submit" value="Exit">
 					</form>
