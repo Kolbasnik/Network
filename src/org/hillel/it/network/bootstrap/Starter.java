@@ -1,19 +1,10 @@
 package org.hillel.it.network.bootstrap;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Properties;
 
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-
-import org.hillel.it.network.gui.UserInterface;
 import org.hillel.it.network.infa.config.Configuration;
 import org.hillel.it.network.model.entity.Group;
 import org.hillel.it.network.model.entity.Message;
@@ -64,12 +55,12 @@ public class Starter {
 		
 		
 		
-		System.out.println(config.getPath());
-		System.out.println(config.getDbUrl());
-		System.out.println(config.getMaxConnections());
+//		System.out.println(config.getPath());
+//		System.out.println(config.getDbUrl());
+//		System.out.println(config.getMaxConnections());
 
-		UserRepository userRepository = new MemoryUserRepository();
-//		UserRepository userRepository = new FileUserRepository(config.getPath());
+//		UserRepository userRepository = new MemoryUserRepository();
+		UserRepository userRepository = new FileUserRepository(config.getPath());
 		GroupRepository groupRepository = new MemoryGroupRepository();
 		MessageRepository messageRepository = new MemoryMessageRepository();
 		WallRepository wallRepository=new MemoryWallRepository();

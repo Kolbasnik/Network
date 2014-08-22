@@ -2,9 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<jsp:useBean id="service"
-	class="org.hillel.it.network.serviceImpl.ServiceImpl"
-	scope="application" />
+<jsp:useBean id="service" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"/>
 <%
 	if (session.getAttribute("service") == null) {
 		session.setAttribute("service", service);
@@ -15,7 +13,6 @@
 	function validate() {
 		var login = document.getElementById("login");
 		var password = document.getElementById("password");
-		var redirect = document.getElementById("redirect");
 
 		if (login.value == "") {
 			alert('Enter login');
@@ -37,7 +34,7 @@
 	<div id="menu">
 		<ul>
 			<li><a href="index.jsp">Main</a></li>
-			<li><a href="#">HTML</a></li>
+			<li><a href="users.jsp">Users</a></li>
 			<li><a href="#">CSS</a></li>
 			<li><a href="#" id="nowopen">PHP</a></li>
 			
@@ -51,7 +48,7 @@
 					<input type="submit" value="Sing in"> 
 				</form>
 				<%} else {	%>
-					<li><a href="profile">Hello, <%=service.getUserName(session.getAttribute("user"))%></a>
+					<li><a href="profile.jsp">Hello, <%=service.getUserName(session.getAttribute("user"))%></a>
 					<form name="form_logout" action="autorization" method="GET">
 						<input type="submit" value="Exit">
 					</form>

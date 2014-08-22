@@ -3,6 +3,8 @@ package org.hillel.it.network.serviceImpl;
 import java.io.Serializable;
 import java.util.List;
 
+
+
 import org.hillel.it.network.infa.config.Configuration;
 import org.hillel.it.network.model.entity.Group;
 import org.hillel.it.network.model.entity.Message;
@@ -48,10 +50,10 @@ public class ServiceImpl implements Service, Serializable{
 	}
 	
 	public ServiceImpl () {
-//		Configuration config = new Configuration();
+		Configuration config = new Configuration();
 
 		userRepository = new MemoryUserRepository();
-//		userRepository = new FileUserRepository(config.getPath());
+		userRepository = new FileUserRepository(config.getPath());
 		groupRepository = new MemoryGroupRepository();
 		messageRepository = new MemoryMessageRepository();
 		wallRepository=new MemoryWallRepository();
@@ -88,17 +90,41 @@ public class ServiceImpl implements Service, Serializable{
 		}
 	}
 	
+	public String getUserNickname (Object user) {
+		User curUser = (User) user;
+		
+		return curUser.getNickname();
+	}
+
 	public String getUserName (Object user) {
 		User curUser = (User) user;
 		
 		return curUser.getName();
 	}
-	
+
+	public String getUserSurname (Object user) {
+		User curUser = (User) user;
+		
+		return curUser.getSurname();
+	}
+
+	public String getUserEmail (Object user) {
+		User curUser = (User) user;
+		
+		return curUser.getEmail();
+	}
+
+	public String getUserEducation (Object user) {
+		User curUser = (User) user;
+		
+		return curUser.getEducation();
+	}
+
 	public User userIsValidate (String login, String password ) {
 
 		User user = searchUser(login);
-	
-		if (user.validUser(login, password)) {
+			
+		if ((user != null) && (user.validUser(login, password))) {
 			return user;
 		}
 		else {

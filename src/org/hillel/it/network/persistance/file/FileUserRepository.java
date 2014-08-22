@@ -60,7 +60,7 @@ public class FileUserRepository extends MemoryUserRepository implements UserRepo
 		return super.searchUser(searchParam);
 	}
 
-	public final List<User> getUsers() {
+	public List<User> getUsers() {
 		return super.getUsers();
 	}
 	

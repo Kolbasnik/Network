@@ -5,25 +5,23 @@
 <head>
 <jsp:include page="header.jsp" />
 
+<jsp:useBean id="service" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"/>
+<%
+	if (session.getAttribute("service") == null) {
+		session.setAttribute("service", service);
+	}
+%>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>
-		Nick
-		<%=session.getAttribute("nick")%></h1>
-	<br>
-	<h1>
-		Name
-		<%=session.getAttribute("name")%></h1>
-	<br>
-	<h1>
-		E-mail
-		<%=session.getAttribute("email")%></h1>
-	<br>
-	<h1>
-		Job
-		<%=session.getAttribute("job")%></h1>
-	<br>
+		Nick <%=service.getUserNickname(session.getAttribute("user"))%><br>
+		Name <%=service.getUserName(session.getAttribute("user"))%><br>
+		Surname <%=service.getUserSurname(session.getAttribute("user"))%><br>
+		Education <%=service.getUserEducation(session.getAttribute("user"))%><br>
+	</h1>
 </body>
 </html>

@@ -3,7 +3,7 @@ package org.hillel.it.network.persistance.file;
 import static org.junit.Assert.assertEquals;
 
 import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+//import java.io.ObjectInputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;

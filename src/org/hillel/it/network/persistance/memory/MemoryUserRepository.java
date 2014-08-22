@@ -50,7 +50,7 @@ public class MemoryUserRepository implements UserRepository{
 	 */
 	public void delUser (User user) {
 		if(!users.remove(user)) {
-			System.out.println("Not found such user");
+			System.out.println("Not found this user");
 		}
 	}
 

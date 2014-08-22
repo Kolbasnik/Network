@@ -12,7 +12,7 @@ import org.hillel.it.network.model.entity.User;
  */
 public interface UserRepository {
 	void saveUser (User user);
-	void delUser (User user);	//if we del user - we must delete this user from all groups and messages
+	void delUser (User user);	//if we deleted user - we must delete this user from all groups and messages
 	User searchUser (String searchParam);
 	public List<User> getUsers(); 
 }

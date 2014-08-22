@@ -42,6 +42,8 @@ import org.hillel.it.network.service.Service;
 			Service service = (Service) session.getAttribute("service");
 			currentUser =service.userIsValidate(request.getParameter("login"),request.getParameter("password")); 
 			
+			System.out.println("currentUser = " + currentUser);
+			
 			session.setAttribute("user", (Object) currentUser);
 
 			request.getRequestDispatcher("../pages/index.jsp").forward(request,
