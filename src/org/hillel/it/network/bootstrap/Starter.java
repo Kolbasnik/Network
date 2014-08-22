@@ -28,13 +28,7 @@ import org.hillel.it.network.serviceImpl.ServiceImpl;
 public class Starter {
 
 	public static void main(String[] args){
-/*		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run () {
-				new UserInterface();
-			}
- 	});
-*/
+
 		String nickname;
 		String name;
 		String surname;
@@ -53,11 +47,11 @@ public class Starter {
 		NetworkDb db = new NetworkDb(pull.getConnection());
 		// http://stackoverflow.com/questions/2362032/howto-access-properties-file-from-java-ee-web-application
 		
+		db.createTable("users", "id nick_name");
 		
-		
-//		System.out.println(config.getPath());
-//		System.out.println(config.getDbUrl());
-//		System.out.println(config.getMaxConnections());
+		System.out.println(config.getPath());
+		System.out.println(config.getDbUrl());
+		System.out.println(config.getMaxConnections());
 
 //		UserRepository userRepository = new MemoryUserRepository();
 		UserRepository userRepository = new FileUserRepository(config.getPath());
