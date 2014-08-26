@@ -47,7 +47,7 @@ public class Starter {
 		NetworkDb db = new NetworkDb(pull.getConnection());
 		// http://stackoverflow.com/questions/2362032/howto-access-properties-file-from-java-ee-web-application
 		
-		db.createTable("users", "id nick_name");
+//		db.createTable("users", "id nick_name");
 		
 		System.out.println(config.getPath());
 		System.out.println(config.getDbUrl());

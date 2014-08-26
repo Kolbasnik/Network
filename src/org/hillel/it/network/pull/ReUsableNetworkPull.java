@@ -43,7 +43,7 @@ public class ReUsableNetworkPull implements NetworkPull{
 			
 		}else {
 			try {
-				Connection connection=DriverManager.getConnection(url);
+				Connection connection=DriverManager.getConnection(url,"1","1");
 				ReUsableConnection reConnection = new ReUsableConnection(connection);
 				connections.add(reConnection);
 				return connection;
