@@ -11,7 +11,7 @@ public class ReUsableNetworkPull implements NetworkPull{
 	private int maxConnections;
 	private boolean available;
 	List <ReUsableConnection> connections;
-	private static int i;
+//	private static int i;
 	
 	public ReUsableNetworkPull (int maxConnections, String url){
 		if (maxConnections < 0) {
@@ -43,7 +43,8 @@ public class ReUsableNetworkPull implements NetworkPull{
 			
 		}else {
 			try {
-				Connection connection=DriverManager.getConnection(url,"1","1");
+				DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+				Connection connection=DriverManager.getConnection(url,"admin","123456789");
 				ReUsableConnection reConnection = new ReUsableConnection(connection);
 				connections.add(reConnection);
 				return connection;
@@ -58,6 +59,6 @@ public class ReUsableNetworkPull implements NetworkPull{
 	}
 	
 	public void destroy () {
-		
+		available=false;
 	}
 }

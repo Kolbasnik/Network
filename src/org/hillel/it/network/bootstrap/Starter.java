@@ -40,6 +40,7 @@ public class Starter {
 		String password;
 		int accesLevel; // 0-user, 1-admin
 		
+
 		Configuration config = new Configuration();
 
 		NetworkPull pull = new ReUsableNetworkPull(Integer.valueOf(config.getMaxConnections()), config.getDbUrl());
@@ -47,7 +48,7 @@ public class Starter {
 		NetworkDb db = new NetworkDb(pull.getConnection());
 		// http://stackoverflow.com/questions/2362032/howto-access-properties-file-from-java-ee-web-application
 		
-//		db.createTable("users", "id nick_name");
+		db.createTable("users", "id nick_name");
 		
 		System.out.println(config.getPath());
 		System.out.println(config.getDbUrl());

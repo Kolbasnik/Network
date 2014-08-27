@@ -31,7 +31,7 @@ import org.hillel.it.network.service.Service;
 					response);
 
 		}
-
+	
 		@Override
 		protected void doPost(HttpServletRequest request,
 				HttpServletResponse response) throws ServletException, IOException {
@@ -49,4 +49,6 @@ import org.hillel.it.network.service.Service;
 			request.getRequestDispatcher("../pages/index.jsp").forward(request,
 					response);
 		}
+		
+
 	}

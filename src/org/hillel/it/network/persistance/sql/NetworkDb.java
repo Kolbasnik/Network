@@ -20,6 +20,7 @@ public class NetworkDb extends TextMessage{
 	String string;
 	String table;
 	String tableColumns;
+	String createTableSQL = "CREATE TABLE USER(ID NUMBER(5) NOT NULL, USERNAME VARCHAR(20), PRIMARY KEY (ID))";
 	Connection connection;
 	List<Message> msg;
 	
@@ -32,7 +33,8 @@ public class NetworkDb extends TextMessage{
 			throw new RuntimeException ("Write table columns");
 		}else{
 			 try (Statement st=connection.createStatement();){
-				 String string = String.format("create table %s (%s)", table, tableColumns);
+//				 String string = String.format("create table %s (%s)", table, tableColumns);
+				 string = createTableSQL;
 				 System.out.println(string);
 				 st.executeUpdate(string);
 				 st.close();
