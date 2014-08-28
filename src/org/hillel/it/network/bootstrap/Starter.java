@@ -86,9 +86,8 @@ public class Starter {
 		
 		Configuration config = new Configuration();
 
-//		NetworkPull pull = new ReUsableNetworkPull(Integer.valueOf(config.getMaxConnections()), "jdbc:mysql://localhost:3306/networkdb" );//config.getDbUrl());
+		NetworkPull pull = new ReUsableNetworkPull(Integer.valueOf(config.getMaxConnections()), "jdbc:mysql://localhost:3306/networkdb" );//config.getDbUrl());
 
-		NetworkPull pull = new ReUsableNetworkPull(10, "jdbc:mysql://localhost:3306/networkdb" );
 		Connection connection = pull.getConnection();
 		System.out.println("Starter connection = " + connection);
 

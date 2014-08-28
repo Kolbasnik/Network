@@ -47,6 +47,7 @@ public class NetworkDb extends TextMessage{
 	
 	public NetworkDb(Connection connection){
 		this.connection=connection;
+		
 	}
 
 
