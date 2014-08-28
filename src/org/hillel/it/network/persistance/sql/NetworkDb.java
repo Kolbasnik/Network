@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.hillel.it.network.model.entity.Message;
@@ -20,28 +22,47 @@ public class NetworkDb extends TextMessage{
 	String string;
 	String table;
 	String tableColumns;
-	String createTableSQL = "CREATE TABLE USER(ID NUMBER(5) NOT NULL, USERNAME VARCHAR(20), PRIMARY KEY (ID))";
+	final String createUserTableSQL = "CREATE TABLE USER("
+		 	+ "ID INT,"
+			+ "CREATEDATE TIMESTAMP,"
+			+ "MODIFIEDDATE TIMESTAMP,"
+			+ "CREATEBY INT,"
+			+ "MODIFIEDBY INT,"
+		  	+ "NICKNAME VARCHAR(255),"
+			+ "NAME VARCHAR(255),"
+			+ "SURNAME VARCHAR(255),"
+			+ "BIRTHDAY DATE,"
+			+ "EDUCATION VARCHAR(255),"
+			+ "JOB VARCHAR(255),"
+			+ "CITY VARCHAR(255),"
+			+ "EMAIL VARCHAR(255),"
+			+ "PASSWORD VARCHAR(255),"
+			+ "ACCESLEVEL INT,"
+			+ "COUNTNWEMESSAGES INT,"
+			+ "COUNTNEWWALLMESSAGES INT,"
+			+ "PRIMARY KEY (ID)"
+			+ ")";
 	Connection connection;
 	List<Message> msg;
 	
 	public NetworkDb(Connection connection){
 		this.connection=connection;
 	}
-	
+
+
 	public void createTable(String table, String tableColumns){
-		if (tableColumns.equals(null) || table.equals(null)) {
-			throw new RuntimeException ("Write table columns");
-		}else{
+//		if (tableColumns.equals(null) || table.equals(null)) {
+//			throw new RuntimeException ("Write table columns");
+//		}else{
 			 try (Statement st=connection.createStatement();){
-//				 String string = String.format("create table %s (%s)", table, tableColumns);
-				 string = createTableSQL;
+				 string = createUserTableSQL;
 				 System.out.println(string);
 				 st.executeUpdate(string);
 				 st.close();
 			 } catch (SQLException e) {
 				 e.printStackTrace();
 			 }
-		}
+//		}
 	}
 		
 	

@@ -6,34 +6,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Driver;
+
 public class ReUsableNetworkPull implements NetworkPull{
 	private String url;
 	private int maxConnections;
 	private boolean available;
 	List <ReUsableConnection> connections;
-//	private static int i;
 	
 	public ReUsableNetworkPull (int maxConnections, String url){
-		if (maxConnections < 0) {
-			throw new RuntimeException ("Wrong max connections");
-		}
-		else {
-			if (url.equals(null)) {
-				throw new RuntimeException ("Wrong URL");
-			}
-			else {
-				this.maxConnections=maxConnections;
+//		if (maxConnections < 0) {
+//			throw new RuntimeException ("Wrong max connections");
+//		}
+//		else {
+//			if (url.equals(null)) {
+//				throw new RuntimeException ("Wrong URL");
+//			}
+//			else {
+				{				this.maxConnections=maxConnections;
 				available=true;
 				connections = new ArrayList<>();
 				this.url=url;
+	            try {
+					DriverManager.registerDriver(new Driver());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		}
+//		}
 	}
 	
-	public Connection getConnection() {
+	public ReUsableConnection getConnection() {
 		for (ReUsableConnection currConnection:connections) {
 			if (!currConnection.isBusy()) {
-				return currConnection.getConnect();
+				return (ReUsableConnection) currConnection.getConnect();
 			}
 		}
 
@@ -41,19 +48,22 @@ public class ReUsableNetworkPull implements NetworkPull{
 			available=false;
 			throw new RuntimeException ("max connections...");
 			
-		}else {
-			try {
-				DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-				Connection connection=DriverManager.getConnection(url,"admin","123456789");
-				ReUsableConnection reConnection = new ReUsableConnection(connection);
-				connections.add(reConnection);
-				return connection;
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println(e);
-			}
+		}
+		else {
+	        try
+	        {
+//	            DriverManager.registerDriver(new Driver());
+	            Connection connection = DriverManager.getConnection(url, "admin","123456789");
+	            ReUsableConnection reconnect = new ReUsableConnection (connection);
+	            
+	            connections.add(reconnect);
+	            System.out.println("Good connection= " + connection);
+	            return reconnect;
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	        }
 		}
 			return null;
 	}

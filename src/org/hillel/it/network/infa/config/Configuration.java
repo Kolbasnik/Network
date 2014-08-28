@@ -37,6 +37,7 @@ public class Configuration {
 	public String getDbUrl () {
 		for (int i=0; i<configParams.size(); i++) {
 			if (configParams.get(i).contains("DB.url=")) {
+				System.out.println("out");
 				return configParams.get(i).split("DB.url=")[1];
 			}
 		}

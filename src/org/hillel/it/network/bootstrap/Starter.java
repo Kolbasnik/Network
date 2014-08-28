@@ -1,9 +1,12 @@
 package org.hillel.it.network.bootstrap;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import com.mysql.jdbc.Driver;
 
 import org.hillel.it.network.infa.config.Configuration;
 import org.hillel.it.network.model.entity.Group;
@@ -25,6 +28,7 @@ import org.hillel.it.network.pull.ReUsableNetworkPull;
 import org.hillel.it.network.service.Service;
 import org.hillel.it.network.serviceImpl.ServiceImpl;
 
+
 public class Starter {
 
 	public static void main(String[] args){
@@ -41,17 +45,61 @@ public class Starter {
 		int accesLevel; // 0-user, 1-admin
 		
 
+/*
+        try
+        {
+            DriverManager.registerDriver(new Driver());
+            Connection conn = (Connection) DriverManager.getConnection(
+                 "jdbc:mysql://localhost:3306/networkdb", "admin","123456789");
+            
+            //conn.setReadOnly(true);
+            Statement stat=(Statement) conn.createStatement();
+
+            String sqlString = "CREATE TABLE USER ("
+            		+ "ID Int,"
+            		+ "Nickname Varchar(255),"
+            		+ "Name Varchar(255),"
+            		+ "Surname Varchar(255),"
+            		+ "City Varchar(255)"
+            		+ ");";
+            		
+//            ResultSet rs=stat.execute(sqlString);
+//            System.out.println("Result query = " + stat.execute(sqlString));
+//            ResultSet rs=stat.executeQuery();
+
+            sqlString = "INSERT INTO USER (ID, Nickname, Name, Surname, City)"
+            		+ "VALUES ('1', 'Kolbasnik', 'Baydarov', 'Alexandr', 'Odessa');";
+
+            System.out.println("Result query = " + stat.execute(sqlString));
+
+            
+            //rs.close();
+            stat.close();
+            conn.close();
+            System.out.println("Good connection");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+*/    		
+		
 		Configuration config = new Configuration();
 
-		NetworkPull pull = new ReUsableNetworkPull(Integer.valueOf(config.getMaxConnections()), config.getDbUrl());
-		
-		NetworkDb db = new NetworkDb(pull.getConnection());
+//		NetworkPull pull = new ReUsableNetworkPull(Integer.valueOf(config.getMaxConnections()), "jdbc:mysql://localhost:3306/networkdb" );//config.getDbUrl());
+
+		NetworkPull pull = new ReUsableNetworkPull(10, "jdbc:mysql://localhost:3306/networkdb" );
+		Connection connection = pull.getConnection();
+		System.out.println("Starter connection = " + connection);
+
+		NetworkDb db = new NetworkDb(connection);
 		// http://stackoverflow.com/questions/2362032/howto-access-properties-file-from-java-ee-web-application
 		
 		db.createTable("users", "id nick_name");
+
 		
-		System.out.println(config.getPath());
-		System.out.println(config.getDbUrl());
+		System.out.println("File path " + config.getPath());
+		System.out.println("DB URL= " + config.getDbUrl());
 		System.out.println(config.getMaxConnections());
 
 //		UserRepository userRepository = new MemoryUserRepository();
