@@ -22,7 +22,9 @@ public class NetworkDb extends TextMessage{
 	String string;
 	String table;
 	String tableColumns;
-	final String createUserTableSQL = "CREATE TABLE USER("
+	final String createUserTableSQL = "IF NOT EXISTS (SELECT * FROM USER)"
+			+ "BEGIN "
+			+ "CREATE TABLE USER("
 		 	+ "ID INT,"
 			+ "CREATEDATE TIMESTAMP,"
 			+ "MODIFIEDDATE TIMESTAMP,"
@@ -41,7 +43,9 @@ public class NetworkDb extends TextMessage{
 			+ "COUNTNWEMESSAGES INT,"
 			+ "COUNTNEWWALLMESSAGES INT,"
 			+ "PRIMARY KEY (ID)"
-			+ ")";
+			+ ") "
+			+ "END";
+	
 	Connection connection;
 	List<Message> msg;
 	
