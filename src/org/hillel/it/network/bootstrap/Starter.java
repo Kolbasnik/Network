@@ -94,7 +94,7 @@ public class Starter {
 		NetworkDb db = new NetworkDb(connection);
 		// http://stackoverflow.com/questions/2362032/howto-access-properties-file-from-java-ee-web-application
 		
-		db.createTable("users", "id nick_name");
+//		db.createTables();
 
 		
 		System.out.println("File path " + config.getPath());
@@ -127,6 +127,7 @@ public class Starter {
 				education, job, city, email, password, accesLevel);
 
 		service.saveUser(user);
+		db.insertUser(user);
 		
 		nickname="Tata";
 		name="Tetiana";
@@ -146,6 +147,7 @@ public class Starter {
 
 		service.saveUser(user2);
 		//service.delUser(user2);
+		db.insertUser(user2);
 		
 		
 	/**

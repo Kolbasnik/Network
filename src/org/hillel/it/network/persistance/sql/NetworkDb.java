@@ -19,12 +19,10 @@ import org.hillel.it.network.model.entity.User;
 public class NetworkDb extends TextMessage{
 	
 	
-	String string;
+//	String string;
 	String table;
 	String tableColumns;
-	final String createUserTableSQL = "IF NOT EXISTS (SELECT * FROM USER)"
-			+ "BEGIN "
-			+ "CREATE TABLE USER("
+	final String CREATEUSERTABLESQL =  "CREATE TABLE IF NOT EXISTS USER("
 		 	+ "ID INT,"
 			+ "CREATEDATE TIMESTAMP,"
 			+ "MODIFIEDDATE TIMESTAMP,"
@@ -43,51 +41,62 @@ public class NetworkDb extends TextMessage{
 			+ "COUNTNWEMESSAGES INT,"
 			+ "COUNTNEWWALLMESSAGES INT,"
 			+ "PRIMARY KEY (ID)"
-			+ ") "
-			+ "END";
+			+ ");";
 	
 	Connection connection;
 	List<Message> msg;
 	
 	public NetworkDb(Connection connection){
 		this.connection=connection;
-		
+		createTables();
 	}
 
-
-	public void createTable(String table, String tableColumns){
-//		if (tableColumns.equals(null) || table.equals(null)) {
-//			throw new RuntimeException ("Write table columns");
-//		}else{
-			 try (Statement st=connection.createStatement();){
-				 string = createUserTableSQL;
-				 System.out.println(string);
-				 st.executeUpdate(string);
-				 st.close();
-			 } catch (SQLException e) {
+	public void createTables(){
+		try (Statement st=connection.createStatement();){
+			 System.out.println(CREATEUSERTABLESQL);
+			 st.executeUpdate(CREATEUSERTABLESQL);
+			 st.close();
+			}
+		catch (SQLException e) {
 				 e.printStackTrace();
-			 }
-//		}
-	}
-		
-	
-	public void insert(String table, Message msg){
-		if (msg.equals(null)|| table.equals(null)){
-			throw new RuntimeException ("No message to insert to the table");
-		}else{		
-		String string = String.format("insert into %s values ('%s', '%s', '%s', '%s')", table, msg.getSender().getName(), 
-				msg.getReceiver().getName(), msg.getSubject(), msg.getText());
-		System.out.println(string);
-			 try (Statement st=connection.createStatement();){
-				 int rows=st.executeUpdate(string);
-				 st.close();
-	} catch (SQLException e1) {
-		
-		e1.printStackTrace();
-	}
 		}
 	}
+		
 	
+	public void insertUser(User user){
+		if (user == null) {
+			
+		}
+		else {
+			String insertUser = "INSERT INTO "
+				+ "USER (ID,NICKNAME,NAME,SURNAME,"
+				+ "EDUCATION,JOB,CITY,EMAIL,PASSWORD) "
+				+ "VALUES ('"
+				+ user.getId() + "','" 
+				+ user.getNickname() + "','"
+				+ user.getName() + "','"
+				+ user.getSurname() + "','"
+				+ user.getEducation() + "','"
+				+ user.getJob() + "','"
+				+ user.getCity() + "','"
+				+ user.getEmail() + "','"
+				+ user.getPassword()
+				+ "')";
+//			String insertUser = "INSERT INTO USER"
+//					+ "SET"
+//					+ "'ID'=1,"
+//					+ "'NICKNAME'='kolbas'";
+//			
+			try (Statement st=connection.createStatement();){
+				 System.out.println(insertUser);
+				 st.executeUpdate(insertUser);
+				 st.close();
+				}
+			catch (SQLException e) {
+					 e.printStackTrace();
+			}
+		}
+	}
 
 
 
