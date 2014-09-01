@@ -15,7 +15,7 @@ private User receiver;
 			throw new RuntimeException("There is no text");
 		}
 		else {
-			super.setCreateBy(sender);
+			super.setCreateBy(sender.getId());
 			this.setSender(sender);
 			this.receiver=receiver;
 			this.setText(text);
@@ -23,7 +23,7 @@ private User receiver;
 			Calendar calendar=new GregorianCalendar();
 			calendar.getTime();
 			super.setCreateDate(calendar);
-			super.setCreateBy(sender);
+			super.setCreateBy(sender.getId());
 		}
 	}
 		

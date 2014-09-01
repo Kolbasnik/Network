@@ -21,8 +21,7 @@ public class User extends BaseEntity implements Serializable{
 	private int countNewMessages;
 	private int countNewWallMessages;
 	
-	public User(String nikname, String name, String surname, Calendar birthDay,
-			String education, String job, String city, String email,
+	public User(String nikname, String name, String surname, String city, String email,
 			String password, int accesLevel) {
 
 		if (nikname.equals("") || password.equals("") || nikname == null || password == null) {
@@ -32,9 +31,6 @@ public class User extends BaseEntity implements Serializable{
 			this.nikname = nikname;
 			this.name = name;
 			this.surname = surname;
-			this.birthDay = birthDay;
-			this.education = education;
-			this.job = job;
 			this.city = city;
 			this.email = email;
 			this.password = password;
@@ -43,7 +39,7 @@ public class User extends BaseEntity implements Serializable{
 			this.countNewWallMessages=0;
 			calendar.getTime();
 			setCreateDate(calendar);
-			setCreateBy(this);
+			setCreateBy(this.getId());
 		}
 	}
 	

@@ -31,7 +31,7 @@ public class Group extends BaseEntity {
 			this.members = new ArrayList<User>();
 			this.members=members;
 			this.userCreater=userCreater;
-			setCreateBy(userCreater);
+			setCreateBy(userCreater.getId());
 			calendar.getTime();
 			setCreateDate(calendar);
 		}

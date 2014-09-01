@@ -23,21 +23,18 @@ public class ReUsableNetworkPull implements NetworkPull{
 //				throw new RuntimeException ("Wrong URL");
 //			}
 //			else {
-				{				this.maxConnections=maxConnections;
+
+
+		
+		{				this.maxConnections=maxConnections;
 				available=true;
 				connections = new ArrayList<>();
 				this.url=url;
-	            try {
-					DriverManager.registerDriver(new Driver());
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
 //		}
 	}
 	
-	public ReUsableConnection getConnection() {
+	public Connection getConnection() {
 		for (ReUsableConnection currConnection:connections) {
 			if (!currConnection.isBusy()) {
 				return (ReUsableConnection) currConnection.getConnect();
@@ -50,23 +47,25 @@ public class ReUsableNetworkPull implements NetworkPull{
 			
 		}
 		else {
+			
+			Connection connection = null;
 	        try
 	        {
-//	            DriverManager.registerDriver(new Driver());
-	            Connection connection = DriverManager.getConnection(url, "admin","123456789");
-	            ReUsableConnection reconnect = new ReUsableConnection (connection);
+	        	DriverManager.registerDriver(new Driver());
+	            connection = DriverManager.getConnection(url, "admin","123456789");
 	            
-	            connections.add(reconnect);
+	            connections.add(new ReUsableConnection (connection));
 	            System.out.println("Good connection= " + connection);
-	            return reconnect;
+	            return connection;
 	        }
 	        catch(Exception e)
 	        {
 	            e.printStackTrace();
+	            return connection;
 	        }
 		}
-			return null;
-	}
+	}		
+			
 	
 	public void destroy () {
 		available=false;

@@ -9,8 +9,8 @@ import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.persistance.repository.UserRepository;
 
 public class MemoryUserRepository implements UserRepository{
-	private static int userId;
-	private List <User> users;
+	protected static int userId;
+	protected List <User> users;
 	Calendar calendar;
 
 	/**

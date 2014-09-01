@@ -8,13 +8,13 @@ public class Message extends TextMessage {
 	public Message (User sender, User receiver, String subject, String text) {
 		
 		if ((receiver != null) || (text != "")) {
-			this.setCreateBy(sender);
+			this.setCreateBy(sender.getId());
 			this.sender=sender;
 			this.text = text;
 			this.receiver = receiver;
 			this.subject = subject;
 			this.isSending=false;
-			setCreateBy(sender);
+			setCreateBy(sender.getId());
 			calendar.getTime();
 			setCreateDate(calendar);
 		}

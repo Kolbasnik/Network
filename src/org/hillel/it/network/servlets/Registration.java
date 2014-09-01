@@ -39,22 +39,15 @@ public class Registration extends HttpServlet {
 		Service service = (Service) session.getAttribute("service");
 		
 		// create users and admin
-		Calendar birthDay = new GregorianCalendar();
 		String nickname=request.getParameter("nickname");
 		String name=request.getParameter("name");
 		String surname=request.getParameter("surname");
-		birthDay.set(Calendar.DAY_OF_MONTH, 6);
-		birthDay.set(Calendar.MONTH, 6);
-		birthDay.set(Calendar.YEAR, 1983);
-		String education=request.getParameter("education");
-		String job=request.getParameter("job");
 		String city=request.getParameter("city");
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		int accesLevel = 1; // 0-user, 1-admin
 
-		User user = new User(nickname, name, surname, birthDay,
-				education, job, city, email, password, accesLevel);
+		User user = new User(nickname, name, surname, city, email, password, accesLevel);
 		
 		service.saveUser(user);
 		

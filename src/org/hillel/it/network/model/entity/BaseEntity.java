@@ -11,13 +11,13 @@ public class  BaseEntity{
 	protected int id;
 	protected Calendar createDate;
 	protected Calendar modifiedDate;
-	protected User createBy;
-	protected User modifiedBy;
+	protected int createBy;
+	protected int modifiedBy;
 	public static Calendar calendar=new GregorianCalendar();
 
 
 	public BaseEntity () {
-		if (createBy != null) {
+		if (createBy != 0) {
 			this.createDate = new GregorianCalendar();
 			this.createDate.getTime();
 		}
@@ -47,19 +47,19 @@ public class  BaseEntity{
 		this.modifiedDate = modifiedDate;
 	}
 
-	public User getCreateBy() {
+	public int getCreateBy() {
 		return createBy;
 	}
 
-	public void setCreateBy(User createBy) {
+	public void setCreateBy(int createBy) {
 		this.createBy = createBy;
 	}
 
-	public User getModifiedBy() {
+	public int getModifiedBy() {
 		return modifiedBy;
 	}
 
-	public void setModifiedBy(User modifiedBy) {
+	public void setModifiedBy(int modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
 }

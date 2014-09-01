@@ -24,8 +24,7 @@ public class TestFileUserRepository {
 		birthDay.set(Calendar.MONTH, 3);
 		birthDay.set(Calendar.YEAR, 1988);
 
-		User userTosave = new User ("Tata", "Tanya", "Khristova", birthDay,
-				"High school", "student", "Tokyo", "tanya@gmail.com", "hgjhk", 0);
+		User userTosave = new User ("Tata", "Tanya", "Khristova", "Tokyo", "tanya@gmail.com", "hgjhk", 0);
 		
 		fileRepository.saveUser(userTosave);
 		
@@ -55,8 +54,7 @@ public class TestFileUserRepository {
 		birthDay.set(Calendar.MONTH, 3);
 		birthDay.set(Calendar.YEAR, 1988);
 
-		User userTosave = new User ("Tata", "Tanya", "Khristova", birthDay,
-				"High school", "student", "Tokyo", "tanya@gmail.com", "hgjhk", 0);
+		User userTosave = new User ("Tata", "Tanya", "Khristova", "Tokyo", "tanya@gmail.com", "hgjhk", 0);
 		
 		fileRepository.saveUser(userTosave);
 		fileRepository.delUser(userTosave);

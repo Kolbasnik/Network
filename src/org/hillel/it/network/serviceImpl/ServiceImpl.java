@@ -1,7 +1,11 @@
 package org.hillel.it.network.serviceImpl;
 
 import java.io.Serializable;
+import java.sql.Connection;
 import java.util.List;
+
+
+
 
 
 
@@ -10,6 +14,7 @@ import org.hillel.it.network.model.entity.Group;
 import org.hillel.it.network.model.entity.Message;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.model.entity.Wall;
+import org.hillel.it.network.persistance.db.DBUserRepository;
 import org.hillel.it.network.persistance.file.FileUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryMessageRepository;
@@ -19,6 +24,9 @@ import org.hillel.it.network.persistance.repository.GroupRepository;
 import org.hillel.it.network.persistance.repository.MessageRepository;
 import org.hillel.it.network.persistance.repository.UserRepository;
 import org.hillel.it.network.persistance.repository.WallRepository;
+import org.hillel.it.network.persistance.sql.NetworkDb;
+import org.hillel.it.network.pull.NetworkPull;
+import org.hillel.it.network.pull.ReUsableNetworkPull;
 import org.hillel.it.network.service.Service;
 
 
@@ -50,10 +58,27 @@ public class ServiceImpl implements Service, Serializable{
 	}
 	
 	public ServiceImpl () {
-		Configuration config = new Configuration();
+		Connection connection = null;
+		NetworkPull pull = null;
+//		Configuration config = new Configuration();
+
+//		NetworkPull pull = new ReUsableNetworkPull(Integer.valueOf(config.getMaxConnections()), "jdbc:mysql://localhost:3306/networkdb" );//config.getDbUrl());
+		pull = new ReUsableNetworkPull(100, "jdbc:mysql://localhost:3306/networkdb");
+
+		System.out.println("pull service= " + pull);
+
+		connection = pull.getConnection();
+		//userRepository = new DBUserRepository(connection);
+
+//		System.out.println("DB URL= " + config.getDbUrl());
+//		System.out.println("MaxConnections " + config.getMaxConnections());
+		System.out.println("connection service= " + connection);
+		
 
 		userRepository = new MemoryUserRepository();
-		userRepository = new FileUserRepository(config.getPath());
+		
+		
+//		userRepository = new FileUserRepository(config.getPath());
 		groupRepository = new MemoryGroupRepository();
 		messageRepository = new MemoryMessageRepository();
 		wallRepository=new MemoryWallRepository();

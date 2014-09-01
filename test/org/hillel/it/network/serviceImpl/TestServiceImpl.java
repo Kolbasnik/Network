@@ -37,12 +37,10 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		user = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-				"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		user = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 		service.saveUser(user);
 
-		user = new User ("Kaba", "Genadiy", "Kabaev", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		user = new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		service.saveUser(user);
 
 		assertEquals(userRepository.getUsers().isEmpty(), false);
@@ -56,12 +54,10 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-				"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 		userRepository.saveUser(user1);
 
-		User user2 = new User ("Kaba", "Genadiy", "Kabaev", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		User user2 = new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		service.saveUser(user2);
 		
 		service.delUser(user1);
@@ -76,8 +72,7 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-				"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 		service.saveUser(user1);
 		
 		User user2=userRepository.searchUser("alibaba");
@@ -92,12 +87,10 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		User user = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-				"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		User user = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 		service.saveUser(user);
 
-		user = new User ("Kaba", "Genadiy", "Kabaev", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		user = new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		service.saveUser(user);
 		
 		Group group = new Group("Berloga", userRepository.getUsers(),user);
@@ -113,12 +106,10 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		User user = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-			"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		User user = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 		service.saveUser(user);
 
-		user = new User ("Kaba", "Genadiy", "Kabaev", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		user = new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		service.saveUser(user);
 		
 		Group group = new Group("Berloga", userRepository.getUsers(),user);
@@ -135,12 +126,10 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-				"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 		service.saveUser(user1);
 
-		User user2 = new User ("Kaba", "Genadiy", "Kabaev", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		User user2 = new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 	service.saveUser(user2);
 
 		Group group = new Group("Berloga", userRepository.getUsers(),user1);
@@ -149,12 +138,10 @@ public class TestServiceImpl {
 		service.delUser(user1);
 		service.delUser(user2);
 		
-		user1 = new User ("Kostyan", "Kostya", "Hramoy", birthDay,
-				"Yeard", "gopnik", "Izmail", "hramoy@mail.tu", "1111", 0);
+		user1 = new User ("Kostyan", "Kostya", "Hramoy", "Izmail", "hramoy@mail.tu", "1111", 0);
 		service.saveUser(user1);
 
-		user2 = new User ("Goga", "Genadiy", "Kosoy", birthDay,
-				"Kindegaden", "Seller", "Izrail", "gena-na@ukr.net", "mtc", 0);
+		user2 = new User ("Goga", "Genadiy", "Kosoy", "Izrail", "gena-na@ukr.net", "mtc", 0);
 		service.saveUser(user2);
 
 		group = new Group("Ubejische", userRepository.getUsers(),user2);
@@ -172,11 +159,9 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-				"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 
-		User user2= new User ("Kaba", "Genadiy", "Kabaev", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		User user2= new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		
 		Message message = new Message(user1, user2, "Test message", "Hello test friend");
 		service.saveMessage(message);
@@ -196,11 +181,9 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-				"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 
-		User user2= new User ("Kaba", "Genadiy", "Kabaev", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		User user2= new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		
 		Message message = new Message(user1, user2, "Test message", "Hello test friend");
 		service.saveMessage(message);
@@ -220,11 +203,9 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-				"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 
-		User user2= new User ("Kaba", "Genadiy", "Kabaev", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		User user2= new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		
 		Message message = new Message(user1, user2, "Test message", "Hello test friend");
 		service.sendMessage(message);
@@ -241,11 +222,9 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 6);
 		birthDay.set(Calendar.YEAR, 1983);
 
-		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", birthDay,
-				"High school", "seaman", "Izmail", "alibaba@gmail.com", "qwerty", 0);
+		User user1 = new User ("Alibaba", "Vasiliy", "Alibabaev", "Izmail", "alibaba@gmail.com", "qwerty", 0);
 
-		User user2= new User ("Kaba", "Genadiy", "Kabaev", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		User user2= new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		
 		Message message = new Message(user1, user2, "Test message", "Hello test friend");
 		service.saveMessage(message);
@@ -274,11 +253,9 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 3);
 		birthDay.set(Calendar.YEAR, 1988);
 
-		User sender = new User ("Tata", "Tanya", "Khristova", birthDay1,
-				"High school", "student", "Odessa", "tanya@gmail.com", "hgjhk", 0);
+		User sender = new User ("Tata", "Tanya", "Khristova", "Odessa", "tanya@gmail.com", "hgjhk", 0);
 
-		User receiver= new User ("Sen", "Senya", "Ivanov", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		User receiver= new User ("Sen", "Senya", "Ivanov", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		
 		Wall wallmsg = new Wall(sender, receiver, "Hello, my friend");
 		service.saveWallMessage(wallmsg);
@@ -301,11 +278,9 @@ public class TestServiceImpl {
 		birthDay.set(Calendar.MONTH, 3);
 		birthDay.set(Calendar.YEAR, 1988);
 
-		User sender = new User ("Tata", "Tanya", "Khristova", birthDay1,
-				"High school", "student", "Odessa", "tanya@gmail.com", "hgjhk", 0);
+		User sender = new User ("Tata", "Tanya", "Khristova", "Odessa", "tanya@gmail.com", "hgjhk", 0);
 
-		User receiver= new User ("Sen", "Senya", "Ivanov", birthDay,
-				"Middle school #3", "Seller", "Kiev", "kabaev@ukr.net", "kaba123", 0);
+		User receiver= new User ("Sen", "Senya", "Ivanov", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		
 		Wall wallmsg2 = new Wall(sender, receiver, "Hello, my friend");
 		Wall wallmsg3 = new Wall(sender, receiver, "Hello, my friend");

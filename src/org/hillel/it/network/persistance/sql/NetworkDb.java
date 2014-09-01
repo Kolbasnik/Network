@@ -19,7 +19,6 @@ import org.hillel.it.network.model.entity.User;
 public class NetworkDb extends TextMessage{
 	
 	
-//	String string;
 	String table;
 	String tableColumns;
 	final String CREATEUSERTABLESQL =  "CREATE TABLE IF NOT EXISTS USER("
@@ -82,11 +81,6 @@ public class NetworkDb extends TextMessage{
 				+ user.getEmail() + "','"
 				+ user.getPassword()
 				+ "')";
-//			String insertUser = "INSERT INTO USER"
-//					+ "SET"
-//					+ "'ID'=1,"
-//					+ "'NICKNAME'='kolbas'";
-//			
 			try (Statement st=connection.createStatement();){
 				 System.out.println(insertUser);
 				 st.executeUpdate(insertUser);
