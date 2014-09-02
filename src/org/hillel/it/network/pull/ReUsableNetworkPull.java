@@ -13,28 +13,36 @@ public class ReUsableNetworkPull implements NetworkPull{
 	private int maxConnections;
 	private boolean available;
 	List <ReUsableConnection> connections;
-	
+	private static ReUsableNetworkPull instance=null;
+
 	public ReUsableNetworkPull (int maxConnections, String url){
-//		if (maxConnections < 0) {
-//			throw new RuntimeException ("Wrong max connections");
-//		}
-//		else {
-//			if (url.equals(null)) {
-//				throw new RuntimeException ("Wrong URL");
-//			}
-//			else {
+    	try {
+			DriverManager.registerDriver(new Driver());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		this.maxConnections=maxConnections;
+		available=true;
+		connections = new ArrayList<>();
+		this.url=url;
+	}
 
-
-		
-		{				this.maxConnections=maxConnections;
-				available=true;
-				connections = new ArrayList<>();
-				this.url=url;
-			}
-//		}
+	
+	public static ReUsableNetworkPull getInstance(int maxConnections, String url) {
+		if (instance == null) {
+			ReUsableNetworkPull instance = new ReUsableNetworkPull(maxConnections, url);
+			return instance;
+		}
+		else {
+			return instance;
+		}
 	}
 	
 	public Connection getConnection() {
+		Connection connection = null;;
+
 		for (ReUsableConnection currConnection:connections) {
 			if (!currConnection.isBusy()) {
 				return (ReUsableConnection) currConnection.getConnect();
@@ -43,19 +51,18 @@ public class ReUsableNetworkPull implements NetworkPull{
 
 		if (maxConnections < connections.size()) {
 			available=false;
-			throw new RuntimeException ("max connections...");
-			
+			return connection;
 		}
 		else {
 			
-			Connection connection = null;
 	        try
 	        {
-	        	DriverManager.registerDriver(new Driver());
-	            connection = DriverManager.getConnection(url, "admin","123456789");
+	        	System.out.println("DB url = " + url);
+
+	        	connection = DriverManager.getConnection(url, "admin","123456789");
+	            System.out.println("Good connection= " + connection);
 	            
 	            connections.add(new ReUsableConnection (connection));
-	            System.out.println("Good connection= " + connection);
 	            return connection;
 	        }
 	        catch(Exception e)

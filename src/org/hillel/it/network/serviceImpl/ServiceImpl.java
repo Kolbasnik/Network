@@ -47,7 +47,6 @@ public class ServiceImpl implements Service, Serializable{
 	 * @param messageRepository -repository for messages
 	 * @param wallRepository  -repository for wall messages
 	 */
-
 	public ServiceImpl (UserRepository userRepository, GroupRepository groupRepository, MessageRepository messageRepository, WallRepository wallRepository) {
 		if ((userRepository != null) && (groupRepository != null) && (messageRepository != null) && (wallRepository!=null)) {
 			this.userRepository=userRepository;
@@ -59,19 +58,17 @@ public class ServiceImpl implements Service, Serializable{
 	
 	public ServiceImpl () {
 		Connection connection = null;
-		NetworkPull pull = null;
+//		NetworkPull pull = null;
 //		Configuration config = new Configuration();
 
 //		NetworkPull pull = new ReUsableNetworkPull(Integer.valueOf(config.getMaxConnections()), "jdbc:mysql://localhost:3306/networkdb" );//config.getDbUrl());
-		pull = new ReUsableNetworkPull(100, "jdbc:mysql://localhost:3306/networkdb");
+		NetworkPull pull = ReUsableNetworkPull.getInstance(100, "jdbc:mysql://localhost:3306/networkdb");//new ReUsableNetworkPull(100, "jdbc:mysql://localhost:3306/networkdb");
 
 		System.out.println("pull service= " + pull);
 
 		connection = pull.getConnection();
 		//userRepository = new DBUserRepository(connection);
 
-//		System.out.println("DB URL= " + config.getDbUrl());
-//		System.out.println("MaxConnections " + config.getMaxConnections());
 		System.out.println("connection service= " + connection);
 		
 

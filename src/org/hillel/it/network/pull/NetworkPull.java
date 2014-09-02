@@ -5,4 +5,5 @@ import java.sql.Connection;
 public interface NetworkPull {
 	public Connection getConnection();
 	public void destroy();
+	//public static ReUsableNetworkPull (int maxConnections, String url);
 }
