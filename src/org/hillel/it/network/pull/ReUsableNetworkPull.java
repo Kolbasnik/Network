@@ -8,6 +8,8 @@ import java.util.List;
 
 import com.mysql.jdbc.Driver;
 
+// http://j-hosting.ru/show.html?alias=connectdb
+
 public class ReUsableNetworkPull implements NetworkPull{
 	private String url;
 	private int maxConnections;
