@@ -12,7 +12,6 @@ import org.hillel.it.network.persistance.memory.MemoryUserRepository;
 
 public class DBUserRepository extends MemoryUserRepository{
 	
-
 	String table;
 	String tableColumns;
 	final String CREATEUSERTABLESQL =  "CREATE TABLE IF NOT EXISTS USER("
@@ -61,10 +60,7 @@ public class DBUserRepository extends MemoryUserRepository{
 		
 	
 	public void saveUser(User user){
-		if (user == null) {
-			;
-		}
-		else {
+		if (user != null) {
 			String insertUser = "INSERT INTO "
 				+ "USER (ID,NICKNAME,NAME,SURNAME,"
 				+ "EDUCATION,JOB,CITY,EMAIL,PASSWORD) "
@@ -83,6 +79,8 @@ public class DBUserRepository extends MemoryUserRepository{
 				 System.out.println(insertUser);
 				 st.executeUpdate(insertUser);
 				 st.close();
+				 
+				 super.saveUser(user);
 				}
 			catch (SQLException e) {
 					 e.printStackTrace();
@@ -91,30 +89,28 @@ public class DBUserRepository extends MemoryUserRepository{
 	}
 
 
-
-		public void select(String table){
-			if(table.equals(null)){
-				throw new RuntimeException ("No table");
-			}else{
-				 try (Statement st=connection.createStatement();){
-					 String string = String.format("select * from %s", table);
-					 ResultSet rs= st.executeQuery(string);
-				
-					 while (rs.next()){
-						 String sender =rs.getString(rs.findColumn("sender"));
-						 String receiver =rs.getString(rs.findColumn("receiver"));
-						 String text =rs.getString(rs.findColumn("text"));
-						 System.out.println("sender= " + sender + ",receiver=" + receiver + ",text=" + text);
-						 
-						 
-					 
-					 }
-					 rs.close();
-					 st.close();
-		} catch (SQLException e1) {
-			
-			e1.printStackTrace();
+	public void select(String table){
+		if(table.equals(null)){
+			throw new RuntimeException ("No table");
 		}
+		else{
+			try (Statement st=connection.createStatement();){
+				String string = String.format("select * from %s", table);
+				ResultSet rs= st.executeQuery(string);
+			
+				while (rs.next()){
+					String sender =rs.getString(rs.findColumn("sender"));
+					String receiver =rs.getString(rs.findColumn("receiver"));
+					String text =rs.getString(rs.findColumn("text"));
+					System.out.println("sender= " + sender + ",receiver=" + receiver + ",text=" + text);
+				}
+
+				rs.close();
+				st.close();
+			} 
+			catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 		

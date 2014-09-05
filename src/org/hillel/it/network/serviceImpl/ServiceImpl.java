@@ -20,10 +20,7 @@ import org.hillel.it.network.persistance.repository.GroupRepository;
 import org.hillel.it.network.persistance.repository.MessageRepository;
 import org.hillel.it.network.persistance.repository.UserRepository;
 import org.hillel.it.network.persistance.repository.WallRepository;
-import org.hillel.it.network.persistance.sql.NetworkDb;
 import org.hillel.it.network.pull.DBConnectionPool;
-import org.hillel.it.network.pull.NetworkPull;
-import org.hillel.it.network.pull.ReUsableNetworkPull;
 import org.hillel.it.network.service.Service;
 
 
@@ -55,7 +52,6 @@ public class ServiceImpl implements Service, Serializable{
 	
 	public ServiceImpl () {
 		
-		System.out.println("service was created");
 //		Configuration config = new Configuration();
 		Connection connection = null;
 
@@ -67,7 +63,6 @@ public class ServiceImpl implements Service, Serializable{
 
 		userRepository = new DBUserRepository(connection);
 
-//		userRepository = new MemoryUserRepository();
 		
 //		userRepository = new FileUserRepository(config.getPath());
 		groupRepository = new MemoryGroupRepository();
