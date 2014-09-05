@@ -56,8 +56,42 @@ public class DBUserRepository extends MemoryUserRepository{
 		catch (SQLException e) {
 				 e.printStackTrace();
 		}
-	}
 		
+		getData();
+	}
+	
+	public void getData() { 
+	
+//		 Vector result = new Vector();
+		// Регистрируем драйвер в менеджере
+//		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+		// Подсоединяемся
+//		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.10:1521:base1","scott", "1");
+		Statement stmt;
+		try {
+			stmt = connection.createStatement();
+			// Ну кто же так таблицы называет!!!
+			String query = "SELECT * FROM USER";
+			// Выполняем запрос, который у нас в переменной query
+			ResultSet resultSet = stmt.executeQuery(query);
+			// пока у нас есть данные - выполняем цикл
+			String p1;
+			
+			while (resultSet.next()) {
+				p1 = resultSet.getString(1);
+				System.out.println("p1 = " + p1);
+			}
+
+			// Освобождаем все ресурсы:
+			resultSet.close();
+			stmt.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+	}		
 	
 	public void saveUser(User user){
 		if (user != null) {

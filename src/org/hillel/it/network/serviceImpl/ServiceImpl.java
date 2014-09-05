@@ -68,6 +68,7 @@ public class ServiceImpl implements Service, Serializable{
 		groupRepository = new MemoryGroupRepository();
 		messageRepository = new MemoryMessageRepository();
 		wallRepository=new MemoryWallRepository();
+		
 	}
 
 	/**
