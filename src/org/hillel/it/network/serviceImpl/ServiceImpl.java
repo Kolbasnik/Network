@@ -1,13 +1,9 @@
 package org.hillel.it.network.serviceImpl;
 
+
 import java.io.Serializable;
 import java.sql.Connection;
 import java.util.List;
-
-
-
-
-
 
 import org.hillel.it.network.infa.config.Configuration;
 import org.hillel.it.network.model.entity.Group;
@@ -25,6 +21,7 @@ import org.hillel.it.network.persistance.repository.MessageRepository;
 import org.hillel.it.network.persistance.repository.UserRepository;
 import org.hillel.it.network.persistance.repository.WallRepository;
 import org.hillel.it.network.persistance.sql.NetworkDb;
+import org.hillel.it.network.pull.DBConnectionPool;
 import org.hillel.it.network.pull.NetworkPull;
 import org.hillel.it.network.pull.ReUsableNetworkPull;
 import org.hillel.it.network.service.Service;
@@ -57,23 +54,20 @@ public class ServiceImpl implements Service, Serializable{
 	}
 	
 	public ServiceImpl () {
-		Connection connection = null;
-//		NetworkPull pull = null;
+		
+		System.out.println("service was created");
 //		Configuration config = new Configuration();
+		Connection connection = null;
 
-//		NetworkPull pull = new ReUsableNetworkPull(Integer.valueOf(config.getMaxConnections()), "jdbc:mysql://localhost:3306/networkdb" );//config.getDbUrl());
-		NetworkPull pull = ReUsableNetworkPull.getInstance(100, "jdbc:mysql://localhost:3306/networkdb");//new ReUsableNetworkPull(100, "jdbc:mysql://localhost:3306/networkdb");
-
+		DBConnectionPool pull = DBConnectionPool.getInstance("jdbc:mysql://localhost:3306/networkdb", "admin", "123456789", 100);
 		System.out.println("pull service= " + pull);
 
 		connection = pull.getConnection();
-		//userRepository = new DBUserRepository(connection);
-
 		System.out.println("connection service= " + connection);
-		
 
-		userRepository = new MemoryUserRepository();
-		
+		userRepository = new DBUserRepository(connection);
+
+//		userRepository = new MemoryUserRepository();
 		
 //		userRepository = new FileUserRepository(config.getPath());
 		groupRepository = new MemoryGroupRepository();

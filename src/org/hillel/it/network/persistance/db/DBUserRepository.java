@@ -51,6 +51,8 @@ public class DBUserRepository extends MemoryUserRepository{
 			 System.out.println(CREATEUSERTABLESQL);
 			 st.executeUpdate(CREATEUSERTABLESQL);
 			 st.close();
+			 
+			 System.out.println("we created tables");
 			}
 		catch (SQLException e) {
 				 e.printStackTrace();

@@ -13,6 +13,7 @@ import org.hillel.it.network.model.entity.Group;
 import org.hillel.it.network.model.entity.Message;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.model.entity.Wall;
+import org.hillel.it.network.persistance.db.DBUserRepository;
 import org.hillel.it.network.persistance.file.FileUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryMessageRepository;
@@ -23,6 +24,7 @@ import org.hillel.it.network.persistance.repository.MessageRepository;
 import org.hillel.it.network.persistance.repository.UserRepository;
 import org.hillel.it.network.persistance.repository.WallRepository;
 import org.hillel.it.network.persistance.sql.NetworkDb;
+import org.hillel.it.network.pull.DBConnectionPool;
 import org.hillel.it.network.pull.NetworkPull;
 import org.hillel.it.network.pull.ReUsableNetworkPull;
 import org.hillel.it.network.service.Service;
@@ -30,6 +32,8 @@ import org.hillel.it.network.serviceImpl.ServiceImpl;
 
 
 public class Starter {
+
+	private static UserRepository userRepository;
 
 	public static void main(String[] args){
 
@@ -42,19 +46,23 @@ public class Starter {
 		String password;
 		int accesLevel; // 0-user, 1-admin
 
-		Connection connection = null;
-		
-//		Configuration config = new Configuration();
-
-		NetworkPull pull = new ReUsableNetworkPull(10, "jdbc:mysql://localhost:3306/networkdb" );
-
-		connection = pull.getConnection();
+//		Connection connection = null;
+//
+//		DBConnectionPool pull = DBConnectionPool.getInstance("jdbc:mysql://localhost:3306/networkdb", "admin", "123456789", 100);
+//		System.out.println("pull service= " + pull);
+//
+//		connection = pull.getConnection();
+//		System.out.println("connection service= " + connection);
+//		
+//		pull = DBConnectionPool.getInstance("jdbc:mysql://localhost:3306/networkdb", "admin", "123456789", 100);
+//		System.out.println("pull service= " + pull);
+//
+//		connection = pull.getConnection();
+//		System.out.println("connection service= " + connection);
+//
 //		userRepository = new DBUserRepository(connection);
-
-//		System.out.println("DB URL= " + config.getDbUrl());
-//		System.out.println("MaxConnections " + config.getMaxConnections());
-		System.out.println("connection= " + connection);
-
+		
+		//Service service = new ServiceImpl();
 		
 	}
 }
