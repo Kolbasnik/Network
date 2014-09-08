@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.List;
 
 import org.hillel.it.network.model.entity.Message;
@@ -15,7 +16,7 @@ public class DBUserRepository extends MemoryUserRepository{
 	String table;
 	String tableColumns;
 	final String CREATEUSERTABLESQL =  "CREATE TABLE IF NOT EXISTS USER("
-		 	+ "ID INT,"
+		 	+ "ID INT NOT NULL AUTO_INCREMENT,"
 			+ "CREATEDATE TIMESTAMP,"
 			+ "MODIFIEDDATE TIMESTAMP,"
 			+ "CREATEBY INT,"
@@ -35,63 +36,92 @@ public class DBUserRepository extends MemoryUserRepository{
 			+ "PRIMARY KEY (ID)"
 			+ ");";
 	
-	Connection connection;
-	List<Message> msg;
+	final String CREATEMESSAGETABLESQL =  "CREATE TABLE IF NOT EXISTS MESSAGE("
+		 	+ "ID INT NOT NULL AUTO_INCREMENT,"
+		 	+ "CREATEDATE TIMESTAMP,"
+			+ "MODIFIEDDATE TIMESTAMP,"
+			+ "CREATEBY INT,"
+			+ "MODIFIEDBY INT,"
+			+ "SENDERID INT,"
+			+ "RECEIVERID INT,"
+			+ "SUBJECT VARCHAR(255),"
+			+ "TEXT TEXT,"
+			+ "PICTUREURL VARCHAR(255)"
+			+ "PRIMARY KEY (ID)"
+			+ ");";
+
+	private Connection connection;
 
 
 	public DBUserRepository (Connection connection) {
 		super();
 		this.connection = connection;
-		createTables();
+		createTable();
 	}
 
-	public void createTables(){
-		try (Statement st=connection.createStatement();){
-			 System.out.println(CREATEUSERTABLESQL);
-			 st.executeUpdate(CREATEUSERTABLESQL);
-			 st.close();
-			 
-			 System.out.println("we created tables");
-			}
+	private void createTable(){
+		try {
+			Statement statement=connection.createStatement();
+			statement.executeUpdate(CREATEUSERTABLESQL);
+			statement.close();
+		}			 
 		catch (SQLException e) {
 				 e.printStackTrace();
 		}
-		
-		getData();
 	}
 	
-	public void getData() { 
-	
-//		 Vector result = new Vector();
-		// Регистрируем драйвер в менеджере
-//		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-		// Подсоединяемся
-//		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.10:1521:base1","scott", "1");
-		Statement stmt;
+	public User searchUserByEmail(String email) { 
+		User user = null;
 		try {
-			stmt = connection.createStatement();
-			// Ну кто же так таблицы называет!!!
-			String query = "SELECT * FROM USER";
-			// Выполняем запрос, который у нас в переменной query
-			ResultSet resultSet = stmt.executeQuery(query);
-			// пока у нас есть данные - выполняем цикл
-			String p1;
-			
-			while (resultSet.next()) {
-				p1 = resultSet.getString(1);
-				System.out.println("p1 = " + p1);
-			}
+			Statement statement = connection.createStatement();
 
-			// Освобождаем все ресурсы:
+			String searchByEmail = "SELECT * FROM USER WHERE EMAIL='" + email+"'";
+			ResultSet resultSet = statement.executeQuery(searchByEmail);
+			
+			if (resultSet != null) 
+			{
+				resultSet.first();
+				
+				String nickName = resultSet.getString("NICKNAME");
+				System.out.println(("nickName= "+nickName));
+				
+				String name = resultSet.getString("NAME");
+				String surName = resultSet.getString("SURNAME");
+				String city = resultSet.getString("CITY");
+				String password = resultSet.getString("PASSWORD");
+
+				user = new User (nickName, name, surName, city, email, password, 1);
+			}
+			
 			resultSet.close();
-			stmt.close();
+			statement.close();
+			
+			System.out.println("User = " + user);
+			return user;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return user;
 		}
-		 
 	}		
+	
+	public User searchUser(String searchParam) { 
+		User user = null;
+		try {
+			Statement statement = connection.createStatement();
+
+			String searchByName = "SELECT * FROM USER WHERE NAME='" + searchParam+"'";
+			ResultSet resultSet = statement.executeQuery(searchByName);
+			
+			resultSet.close();
+			statement.close();
+			return user;
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+			return user;
+		}
+	}
 	
 	public void saveUser(User user){
 		if (user != null) {
@@ -110,11 +140,10 @@ public class DBUserRepository extends MemoryUserRepository{
 				+ user.getPassword()
 				+ "')";
 			try (Statement st=connection.createStatement();){
-				 System.out.println(insertUser);
 				 st.executeUpdate(insertUser);
 				 st.close();
 				 
-				 super.saveUser(user);
+//				 saveUser(user);
 				}
 			catch (SQLException e) {
 					 e.printStackTrace();
@@ -152,13 +181,4 @@ public class DBUserRepository extends MemoryUserRepository{
 	public void delUser(User user) {
 
 	}
-
-	public User searchUser(String searchParam) {
-		return null;
-	}
-
-//	public List<User> getUsers() {
-//		return null;
-//	}
-
 }

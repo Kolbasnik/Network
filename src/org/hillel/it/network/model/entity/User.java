@@ -2,6 +2,7 @@ package org.hillel.it.network.model.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 public class User extends BaseEntity implements Serializable{
 	/**
@@ -20,6 +21,7 @@ public class User extends BaseEntity implements Serializable{
 	private int accesLevel; // 0-user, 1-admin
 	private int countNewMessages;
 	private int countNewWallMessages;
+	private List <Integer> Messages;
 	
 	public User(String nikname, String name, String surname, String city, String email,
 			String password, int accesLevel) {
@@ -61,10 +63,15 @@ public class User extends BaseEntity implements Serializable{
 	}
 
 	public boolean validUser (String searchEmail, String searchPassword) {
+		System.out.println("vlidate email "+searchEmail);
+		System.out.println("vlidate pass "+searchPassword);
+		
 		if (searchEmail.equalsIgnoreCase(email) && searchPassword.equalsIgnoreCase(password)) {
+			System.out.println("vlidate");
 			return true;
 		}
 
+		System.out.println("Wrong vlidate");
 		return false;
 	}
 	

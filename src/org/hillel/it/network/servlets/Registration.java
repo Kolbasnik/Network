@@ -1,8 +1,6 @@
 package org.hillel.it.network.servlets;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.service.Service;
-import org.hillel.it.network.serviceImpl.ServiceImpl;
 
 
 @WebServlet(name = "Registartion User", description = "This is a simple servlet with annotations", urlPatterns = "/pages/registration")

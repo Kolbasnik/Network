@@ -1,16 +1,14 @@
 package org.hillel.it.network.model.entity;
 
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
-public class Wall extends TextMessage {
+public class Wall {
 private User receiver;
 	
 	
 	public Wall(User sender, User receiver, String text){
 		super();
-
+/*
 		if(text ==""){
 			throw new RuntimeException("There is no text");
 		}
@@ -25,9 +23,10 @@ private User receiver;
 			super.setCreateDate(calendar);
 			super.setCreateBy(sender.getId());
 		}
+		*/
 	}
 		
-	public void setSending(boolean isSending) {
-		this.isSending = isSending;
+	public void setSending() {
+//		isSending = true;
 	}	
 }

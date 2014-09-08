@@ -1,20 +1,27 @@
 package org.hillel.it.network.model.entity;
 
-public class Message extends TextMessage {
-	private User receiver;
+import java.util.List;
+
+public class Message extends BaseEntity {
 	private String subject;
+	private int senderId;
+	private int receiverId;
+	private String text;
+	private List <String> pictureURL;
+	private boolean isSending;
 	
+	public Message (int senderId, int receiverId, String subject, String text, String[] pictureURL) {
 		
-	public Message (User sender, User receiver, String subject, String text) {
+		super();
 		
-		if ((receiver != null) || (text != "")) {
-			this.setCreateBy(sender.getId());
-			this.sender=sender;
+		if ((receiverId > 0) || (text != "")) {
+			this.setCreateBy(senderId);
+			this.senderId=senderId;
 			this.text = text;
-			this.receiver = receiver;
+			this.receiverId = receiverId;
 			this.subject = subject;
 			this.isSending=false;
-			setCreateBy(sender.getId());
+			super.setCreateBy(senderId);
 			calendar.getTime();
 			setCreateDate(calendar);
 		}
@@ -30,12 +37,12 @@ public class Message extends TextMessage {
 		return false;
 	}
 
-	public User getReceiver() {
-		return receiver;
+	public int getReceiver() {
+		return receiverId;
 	}
 
-	public void setReceiver(User receiver) {
-		this.receiver = receiver;
+	public void setReceiver(int receiverId) {
+		this.receiverId = receiverId;
 	}
 
 	public String getSubject() {
@@ -53,5 +60,4 @@ public class Message extends TextMessage {
 	public boolean getSending() {
 		return isSending;
 	}
-
 }

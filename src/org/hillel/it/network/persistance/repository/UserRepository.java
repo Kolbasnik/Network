@@ -15,4 +15,5 @@ public interface UserRepository {
 	void delUser (User user);	//if we deleted user - we must delete this user from all groups and messages
 	User searchUser (String searchParam);
 	public List<User> getUsers(); 
+	User searchUserByEmail(String email);
 }

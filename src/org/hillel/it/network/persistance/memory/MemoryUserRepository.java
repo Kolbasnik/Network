@@ -69,4 +69,10 @@ public class MemoryUserRepository implements UserRepository{
 	public List <User>  getUsers() {
 		return users;
 	}
+
+	@Override
+	public User searchUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -26,12 +26,12 @@ public class MemoryWallRepository implements WallRepository{
 		int index = wallMessages.indexOf(wallMessage);
 
 		if (index < 0) {
-			wallMessage.setId(wallMessageId++);
+//			wallMessage.setId(wallMessageId++);
 			wallMessages.add(wallMessage);
 		}
 		else {
 			calendar.getTime();
-			wallMessage.setModifiedDate(calendar);
+//			wallMessage.setModifiedDate(calendar);
 			wallMessages.set(index, wallMessage);
 		}
 		

@@ -14,7 +14,6 @@ import org.hillel.it.network.persistance.db.DBUserRepository;
 import org.hillel.it.network.persistance.file.FileUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryMessageRepository;
-import org.hillel.it.network.persistance.memory.MemoryUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryWallRepository;
 import org.hillel.it.network.persistance.repository.GroupRepository;
 import org.hillel.it.network.persistance.repository.MessageRepository;
@@ -56,12 +55,13 @@ public class ServiceImpl implements Service, Serializable{
 		Connection connection = null;
 
 		DBConnectionPool pull = DBConnectionPool.getInstance("jdbc:mysql://localhost:3306/networkdb", "admin", "123456789", 100);
-		System.out.println("pull service= " + pull);
-
-		connection = pull.getConnection();
-		System.out.println("connection service= " + connection);
-
-		userRepository = new DBUserRepository(connection);
+		
+		if (pull != null) {
+			connection = pull.getConnection();
+			if (connection != null) {
+				userRepository = new DBUserRepository(connection);
+			}
+		}
 
 		
 //		userRepository = new FileUserRepository(config.getPath());
@@ -132,11 +132,13 @@ public class ServiceImpl implements Service, Serializable{
 		return curUser.getEducation();
 	}
 
-	public User userIsValidate (String login, String password ) {
+	public User userIsValidate (String email, String password ) {
 
-		User user = searchUser(login);
+		System.out.println("email user= " + email);
+		
+		User user = userRepository.searchUserByEmail(email);
 			
-		if ((user != null) && (user.validUser(login, password))) {
+		if ((user != null) && (user.validUser(email, password))) {
 			return user;
 		}
 		else {
@@ -199,8 +201,8 @@ public class ServiceImpl implements Service, Serializable{
 	}
 	
 	public void sendMessage (Message message) {
-		message.getReceiver().addNewMessage();	
-		message.setSending();
+//		message.getReceiver().addNewMessage();	
+//		message.setSending();
 		messageRepository.saveMessage(message);
 	}
 	

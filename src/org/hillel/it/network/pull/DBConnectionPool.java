@@ -32,10 +32,7 @@ public class DBConnectionPool {
 	private void loadDrivers() {
 		try {
 			Driver driver = (Driver)Class.forName (DRIVER_NAME).newInstance();
-			
-			System.out.println("driver = " + driver);
 			DriverManager.registerDriver (driver);
-			System.out.println("Registered JDBC driver ");
 		}
 		catch (Exception e) {
 			System.out.println("Can't register JDBC driver");

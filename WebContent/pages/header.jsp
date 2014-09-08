@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,11 +11,11 @@
 
 <script type="text/javascript">
 	function validate() {
-		var login = document.getElementById("login");
+		var login = document.getElementById("email");
 		var password = document.getElementById("password");
 
 		if (login.value == "") {
-			alert('Enter login');
+			alert('Enter email');
 			return false;
 		}
 		if (password.value == "") {
@@ -42,7 +42,7 @@
 				<li><a href="register.jsp">Registration	</a>
 			
 				<form name="form_login" action="autorization" method="POST" onsubmit="return validate()">
-					E-mail: <input type="text" id="login" name="login"> 
+					E-mail: <input type="text" id="email" name="email"> 
 					Password: <input type="password" id="password" name="password"> 
 					<input type="hidden" id="redirect" value=<%=request.getParameter("redirect")%>> 
 					<input type="submit" value="Sing in"> 
