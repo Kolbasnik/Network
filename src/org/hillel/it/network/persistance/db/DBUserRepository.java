@@ -75,7 +75,7 @@ public class DBUserRepository extends MemoryUserRepository{
 		try {
 			Statement statement = connection.createStatement();
 
-			String searchByEmail = "SELECT * FROM USER WHERE EMAIL='" + email+"'";
+			String searchByEmail = "SELECT * FROM USER WHERE EMAIL='" + email + "'";
 			ResultSet resultSet = statement.executeQuery(searchByEmail);
 			
 			if (resultSet != null) 

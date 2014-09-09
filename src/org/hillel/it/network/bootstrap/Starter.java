@@ -21,21 +21,20 @@ public class Starter {
 //		private MessageRepository messageRepository;
 //		private WallRepository wallRepository;
 
-		Connection connection = null;
-
-		DBConnectionPool pull = DBConnectionPool.getInstance("jdbc:mysql://localhost:3306/networkdb", "admin", "123456789", 100);
-		
-		if (pull != null) {
-			connection = pull.getConnection();
-			if (connection != null) {
-				userRepository = new DBUserRepository(connection);
-			}
-		}
-
-		
-//		userRepository = new FileUserRepository(config.getPath());
-		groupRepository = new MemoryGroupRepository();
-		messageRepository = new MemoryMessageRepository();
+//		Connection connection = null;
+//
+//		DBConnectionPool pull = DBConnectionPool.getInstance("jdbc:mysql://localhost:3306/networkdb", "admin", "123456789", 100);
+//		
+//		if (pull != null) {
+//			connection = pull.getConnection();
+//			if (connection != null) {
+//				userRepository = new DBUserRepository(connection);
+//			}
+//		}
+//
+//		
+//		groupRepository = new MemoryGroupRepository();
+//		messageRepository = new MemoryMessageRepository();
 	
 	}
 }

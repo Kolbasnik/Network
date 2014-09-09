@@ -4,24 +4,65 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="user")
 public class User extends BaseEntity implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String nikname;
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+	private int id;
+	
+	@Column(name="nickname")
+	private String nickname;
+
+	@Column(name="name")
 	private String name;
+
+	@Column(name="surname")
 	private String surname;
+
+	@Column(name="birthday")
 	private Calendar birthDay;
+	
+	@Column(name="education")
 	private String education;
+	
+	@Column(name="job")
 	private String job;
+	
+	@Column(name="city")
 	private String city;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="password")
 	private String password;
+	
+	@Column(name="acces_level")
 	private int accesLevel; // 0-user, 1-admin
+	
+	@Column(name="countNewMessages")
 	private int countNewMessages;
+
+	@Column(name="countNewWallMessages")
 	private int countNewWallMessages;
-	private List <Integer> Messages;
+	
+	@Column(name="messages_id")
+	private List <Integer> messageId;
 	
 	public User(String nikname, String name, String surname, String city, String email,
 			String password, int accesLevel) {
@@ -30,7 +71,7 @@ public class User extends BaseEntity implements Serializable{
 			throw new IllegalStateException ("Incorrect data for user");
 		}
 		else {
-			this.nikname = nikname;
+			this.nickname = nikname;
 			this.name = name;
 			this.surname = surname;
 			this.city = city;
@@ -41,7 +82,7 @@ public class User extends BaseEntity implements Serializable{
 			this.countNewWallMessages=0;
 			calendar.getTime();
 			setCreateDate(calendar);
-			setCreateBy(this.getId());
+//			setCreateBy(getId());
 		}
 	}
 	
@@ -52,7 +93,7 @@ public class User extends BaseEntity implements Serializable{
 		if (searchParam.equalsIgnoreCase(surname)) {
 			return true;
 		}
-		if (searchParam.equalsIgnoreCase(nikname)) {
+		if (searchParam.equalsIgnoreCase(nickname)) {
 			return true;
 		}
 		if (searchParam.equalsIgnoreCase(email)) {
@@ -75,12 +116,13 @@ public class User extends BaseEntity implements Serializable{
 		return false;
 	}
 	
+
 	public String getNickname() {
-		return nikname;
+		return nickname;
 	}
 
 	public void setNickname(String nikname) {
-		this.nikname = nikname;
+		this.nickname = nikname;
 	}
 
 	public String getName() {
@@ -90,6 +132,7 @@ public class User extends BaseEntity implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 	public String getSurname() {
 		return surname;
@@ -181,8 +224,5 @@ public class User extends BaseEntity implements Serializable{
 
 	public void setCountNewWallMessages(int countNewWallMessages) {
 		this.countNewWallMessages = countNewWallMessages;
-	}
-	public void addNewWallMessage(){
-		countNewWallMessages++;
 	}
 }

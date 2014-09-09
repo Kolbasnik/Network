@@ -3,9 +3,7 @@ package org.hillel.it.network.model.entity;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 /**
- * 
  *This is basic class for all entities
- *
  */
 public class  BaseEntity{
 	protected int id;

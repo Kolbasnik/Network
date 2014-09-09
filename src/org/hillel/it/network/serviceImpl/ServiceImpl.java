@@ -11,6 +11,7 @@ import org.hillel.it.network.model.entity.Message;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.model.entity.Wall;
 import org.hillel.it.network.persistance.db.DBUserRepository;
+import org.hillel.it.network.persistance.db.DBUserRepositoryH;
 import org.hillel.it.network.persistance.file.FileUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryMessageRepository;
@@ -52,17 +53,20 @@ public class ServiceImpl implements Service, Serializable{
 	public ServiceImpl () {
 		
 //		Configuration config = new Configuration();
-		Connection connection = null;
 
-		DBConnectionPool pull = DBConnectionPool.getInstance("jdbc:mysql://localhost:3306/networkdb", "admin", "123456789", 100);
-		
-		if (pull != null) {
-			connection = pull.getConnection();
-			if (connection != null) {
-				userRepository = new DBUserRepository(connection);
-			}
-		}
+//		Connection connection = null;
+//		DBConnectionPool pull = DBConnectionPool.getInstance("jdbc:mysql://localhost:3306/networkdb", "admin", "123456789", 100);
+//		if (pull != null) {
+//			connection = pull.getConnection();
+//			if (connection != null) {
+//				userRepository = new DBUserRepository(connection);
+//			}
+//		}
 
+//		userRepository = new DBUserRepository(connection);
+
+		//DBUserRepositoryH UserRepH;  
+		userRepository = new DBUserRepositoryH();
 		
 //		userRepository = new FileUserRepository(config.getPath());
 		groupRepository = new MemoryGroupRepository();
@@ -77,6 +81,8 @@ public class ServiceImpl implements Service, Serializable{
 	 */
 	public void saveUser(User user){
 		if (user != null) {
+			
+			System.out.println("service user= " + user);
 			userRepository.saveUser(user);
 		}
 	}
@@ -133,11 +139,8 @@ public class ServiceImpl implements Service, Serializable{
 	}
 
 	public User userIsValidate (String email, String password ) {
-
-		System.out.println("email user= " + email);
-		
 		User user = userRepository.searchUserByEmail(email);
-			
+		
 		if ((user != null) && (user.validUser(email, password))) {
 			return user;
 		}
