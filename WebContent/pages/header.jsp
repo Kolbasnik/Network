@@ -7,7 +7,7 @@
 	if (session.getAttribute("service") == null) {
 		session.setAttribute("service", service);
 	}
-%>
+%> 
 
 <script type="text/javascript">
 	function validate() {
