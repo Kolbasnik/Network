@@ -39,8 +39,11 @@ import org.hillel.it.network.service.Service;
 			User currentUser;
 			
 			HttpSession session = request.getSession();
+			System.out.println("session= "+session);
+
 			Service service = (Service) session.getAttribute("service");
 			
+			System.out.println("service "+service);
 			currentUser = service.userIsValidate(request.getParameter("email"),request.getParameter("password")); 
 		
 			session.setAttribute("user", (Object) currentUser);

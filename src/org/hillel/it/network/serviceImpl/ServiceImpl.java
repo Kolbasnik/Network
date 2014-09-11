@@ -139,7 +139,9 @@ public class ServiceImpl implements Service, Serializable{
 	}
 
 	public User userIsValidate (String email, String password ) {
+		System.out.println("search by...mail "+email);
 		User user = userRepository.searchUserByEmail(email);
+		System.out.println(user);
 		
 		if ((user != null) && (user.validUser(email, password))) {
 			return user;

@@ -13,13 +13,16 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User extends BaseEntity implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public User () {
+		
+	}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -52,7 +55,7 @@ public class User extends BaseEntity implements Serializable{
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="acces_level")
+	@Column(name="acceslevel")
 	private int accesLevel; // 0-user, 1-admin
 	
 	@Column(name="countNewMessages")
@@ -61,17 +64,16 @@ public class User extends BaseEntity implements Serializable{
 	@Column(name="countNewWallMessages")
 	private int countNewWallMessages;
 	
-	@Column(name="messages_id")
-	private List <Integer> messageId;
+//	private List <Integer> messageId;
 	
-	public User(String nikname, String name, String surname, String city, String email,
+	public User(String nickname, String name, String surname, String city, String email,
 			String password, int accesLevel) {
 
-		if (nikname.equals("") || password.equals("") || nikname == null || password == null) {
+		if (nickname.equals("") || password.equals("") || nickname == null || password == null) {
 			throw new IllegalStateException ("Incorrect data for user");
 		}
 		else {
-			this.nickname = nikname;
+			this.nickname = nickname;
 			this.name = name;
 			this.surname = surname;
 			this.city = city;
@@ -81,7 +83,10 @@ public class User extends BaseEntity implements Serializable{
 			this.countNewMessages=0;
 			this.countNewWallMessages=0;
 			calendar.getTime();
-			setCreateDate(calendar);
+			if (getCreateDate() !=null) {
+				setCreateDate(calendar);
+			}
+			setModifiedDate(calendar);
 //			setCreateBy(getId());
 		}
 	}

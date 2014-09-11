@@ -16,7 +16,7 @@ public class DBUserRepository extends MemoryUserRepository{
 	String table;
 	String tableColumns;
 	final String CREATEUSERTABLESQL =  "CREATE TABLE IF NOT EXISTS USER("
-		 	+ "ID INT NOT NULL AUTO_INCREMENT,"
+		 	+ "USER_ID INT NOT NULL AUTO_INCREMENT,"
 			+ "CREATEDATE TIMESTAMP,"
 			+ "MODIFIEDDATE TIMESTAMP,"
 			+ "CREATEBY INT,"
@@ -31,7 +31,7 @@ public class DBUserRepository extends MemoryUserRepository{
 			+ "EMAIL VARCHAR(255),"
 			+ "PASSWORD VARCHAR(255),"
 			+ "ACCESLEVEL INT,"
-			+ "COUNTNWEMESSAGES INT,"
+			+ "COUNTNEWMESSAGES INT,"
 			+ "COUNTNEWWALLMESSAGES INT,"
 			+ "PRIMARY KEY (ID)"
 			+ ");";
