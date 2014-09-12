@@ -20,7 +20,6 @@ import org.hillel.it.network.service.Service;
 		 */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		protected void doGet(HttpServletRequest request,
 				HttpServletResponse response) throws ServletException, IOException {
 
@@ -32,21 +31,18 @@ import org.hillel.it.network.service.Service;
 
 		}
 	
-		@Override
 		protected void doPost(HttpServletRequest request,
 				HttpServletResponse response) throws ServletException, IOException {
 
 			User currentUser;
 			
 			HttpSession session = request.getSession();
-			System.out.println("session= "+session);
-
 			Service service = (Service) session.getAttribute("service");
-			
-			System.out.println("service "+service);
 			currentUser = service.userIsValidate(request.getParameter("email"),request.getParameter("password")); 
-		
-			session.setAttribute("user", (Object) currentUser);
+			
+			if (currentUser != null) {
+				session.setAttribute("user", (Object) currentUser);
+			}
 
 			request.getRequestDispatcher("../pages/index.jsp").forward(request,
 					response);

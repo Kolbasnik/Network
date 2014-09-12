@@ -9,5 +9,5 @@ public interface MessageRepository {
 	void delMessage (Message message);
 //	void sendMessage (Message message);
 	List<Message> searchMessage (String searchParam);
-	public List<Message> getMessages();
+	List<Message> getMessages();
 }

@@ -2,7 +2,6 @@ package org.hillel.it.network.model.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -122,6 +121,11 @@ public class User extends BaseEntity implements Serializable{
 	}
 	
 
+	public int getId() {
+		return id;
+	}
+	
+	
 	public String getNickname() {
 		return nickname;
 	}

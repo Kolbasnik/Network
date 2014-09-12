@@ -10,8 +10,8 @@ import org.hillel.it.network.model.entity.Group;
 import org.hillel.it.network.model.entity.Message;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.model.entity.Wall;
+import org.hillel.it.network.persistance.db.DBMessageRepository;
 import org.hillel.it.network.persistance.db.DBUserRepository;
-import org.hillel.it.network.persistance.db.DBUserRepositoryH;
 import org.hillel.it.network.persistance.file.FileUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryMessageRepository;
@@ -53,7 +53,6 @@ public class ServiceImpl implements Service, Serializable{
 	public ServiceImpl () {
 		
 //		Configuration config = new Configuration();
-
 //		Connection connection = null;
 //		DBConnectionPool pull = DBConnectionPool.getInstance("jdbc:mysql://localhost:3306/networkdb", "admin", "123456789", 100);
 //		if (pull != null) {
@@ -63,14 +62,10 @@ public class ServiceImpl implements Service, Serializable{
 //			}
 //		}
 
-//		userRepository = new DBUserRepository(connection);
 
-		//DBUserRepositoryH UserRepH;  
-		userRepository = new DBUserRepositoryH();
-		
-//		userRepository = new FileUserRepository(config.getPath());
+		userRepository = new DBUserRepository();
 		groupRepository = new MemoryGroupRepository();
-		messageRepository = new MemoryMessageRepository();
+		messageRepository = new DBMessageRepository();
 		wallRepository=new MemoryWallRepository();
 		
 	}

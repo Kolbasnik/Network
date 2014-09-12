@@ -1,29 +1,53 @@
 package org.hillel.it.network.model.entity;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="messages")
 public class Message extends BaseEntity {
-	private String subject;
-	private int senderId;
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "message_id")
+    private int messageId;
+    
+    @Column(name="senderId")
+   	private int senderId;
+    
+    @Column(name="receiverId")
 	private int receiverId;
+    
+    @Column(name="subject")
+    private String subject;
+
+    @Column(name="text")
 	private String text;
-	private List <String> pictureURL;
+    /*
+    @Column(name="picturesURL")
+	private List <String> picturesURL;
+*/
+    @Column(name="isSending")
 	private boolean isSending;
 	
-	public Message (int senderId, int receiverId, String subject, String text, String[] pictureURL) {
+	public Message (int senderId, int receiverId, String subject, String text) {
 		
-		super();
+//		super();
 		
 		if ((receiverId > 0) || (text != "")) {
-			this.setCreateBy(senderId);
+//			this.setCreateBy(senderId);
 			this.senderId=senderId;
 			this.text = text;
 			this.receiverId = receiverId;
 			this.subject = subject;
 			this.isSending=false;
-			super.setCreateBy(senderId);
-			calendar.getTime();
-			setCreateDate(calendar);
+//			super.setCreateBy(senderId);
+//			calendar.getTime();
+//			setCreateDate(calendar);
 		}
 		else {
 			System.out.println("Write down receiver or text");

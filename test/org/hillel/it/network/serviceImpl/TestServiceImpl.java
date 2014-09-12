@@ -163,7 +163,7 @@ public class TestServiceImpl {
 
 		User user2= new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		
-		Message message = new Message(user1.getId(), user2.getId(), "Test message", "Hello test friend", null);
+		Message message = new Message(user1.getId(), user2.getId(), "Test message", "Hello test friend");
 		service.saveMessage(message);
 		
 		assertEquals(messageRepository.getMessages().isEmpty(), false);
@@ -185,10 +185,10 @@ public class TestServiceImpl {
 
 		User user2= new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		
-		Message message = new Message(user1.getId(), user2.getId(), "Test message", "Hello test friend", null);
+		Message message = new Message(user1.getId(), user2.getId(), "Test message", "Hello test friend");
 		service.saveMessage(message);
 		
-		message = new Message(user2.getId(), user1.getId(), "Test ok", "Hello. All wright", null);
+		message = new Message(user2.getId(), user1.getId(), "Test ok", "Hello. All wright");
 		service.saveMessage(message);
 		
 		service.delMessage(message);
@@ -226,10 +226,10 @@ public class TestServiceImpl {
 
 		User user2= new User ("Kaba", "Genadiy", "Kabaev", "Kiev", "kabaev@ukr.net", "kaba123", 0);
 		
-		Message message = new Message(user1.getId(), user2.getId(), "Test message", "Hello test friend", null);
+		Message message = new Message(user1.getId(), user2.getId(), "Test message", "Hello test friend");
 		service.saveMessage(message);
 
-		message = new Message(user2.getId(), user1.getId(), "Test message", "Hello. I received your message", null);
+		message = new Message(user2.getId(), user1.getId(), "Test message", "Hello. I received your message");
 		service.saveMessage(message);
 
 		assertEquals(service.searchMessage("Test message").size(), 2);
