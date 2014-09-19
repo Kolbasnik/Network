@@ -25,13 +25,6 @@
 		return true;
 	}
 </script>
-
-<script type="text/javascript">
-	function singIn() {
-		alert('Privet medved');
-	}
-</script>
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Friends online</title>

@@ -8,19 +8,21 @@
 <body>
 	<div class="left_menu">
 	<%if (session.getAttribute("user") != null) {%>
+	<h6>
+		Hello, <%=service.getUserName(session.getAttribute("user"))%>
+		
+	</h6>
 		<ul>
-			<li><a href="#messages">Messages</a></li>
-			<li><a href="#groups">Groups</a></li>
-			<li><a href="profile.jsp">Hello, <%=service.getUserName(session.getAttribute("user"))%></a>
-					<form name="form_logout" action="autorization" method="GET">
-						<input type="submit" value="Exit">
-					</form>
+			<li><a href="profile.jsp?ads">My ads</a></li>
+			<li><a href="profile.jsp?friends">Groups</a></li>
+			<li><a href="profile.jsp?page">My page</a>
+			<li><a href="register.jsp?exit" id="exit">Exit</a></li>
 		</ul>
 	<%} 
 	else {%>
 		<ul>
-			<li><a href="profile#singin" id="singin" onClick=singIn()>Sing in</a></li>
-			<li><a href="profile#register" id="register" onClick=toMessage(register)>Register</a></li>
+			<li><a href="register.jsp?singin" id="singin" >Sing in</a></li>
+			<li><a href="register.jsp?register" id="register">Register</a></li>
 		</ul>
 	<%}%>
 	</div>

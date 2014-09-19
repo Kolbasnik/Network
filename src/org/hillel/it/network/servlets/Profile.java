@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.hillel.it.network.model.entity.User;
 
-@WebServlet(name = "Profile", description = "This is a simple servlet with annotations", urlPatterns = "/pages/profile")
+@WebServlet(name = "Profile", description = "This is a simple servlet with annotations", urlPatterns = "/pages/profile.jsp")
 public class Profile extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
