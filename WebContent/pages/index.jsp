@@ -19,8 +19,8 @@
 	<%} 
 	else {%>
 		<ul>
-			<li><a href="#singin">Sing in</a></li>
-			<li><a href="#register">Register</a></li>
+			<li><a href="profile#singin" id="singin" onClick=singIn()>Sing in</a></li>
+			<li><a href="profile#register" id="register" onClick=toMessage(register)>Register</a></li>
 		</ul>
 	<%}%>
 	</div>

@@ -9,7 +9,6 @@
 		session.setAttribute("service", service);
 	}
 %> 
-
 <script type="text/javascript">
 	function validate() {
 		var login = document.getElementById("email");
@@ -24,6 +23,12 @@
 			return false;
 		}
 		return true;
+	}
+</script>
+
+<script type="text/javascript">
+	function singIn() {
+		alert('Privet medved');
 	}
 </script>
 
