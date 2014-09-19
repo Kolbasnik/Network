@@ -1,0 +1,14 @@
+.left_menu {
+	width: 20%;/* Ширина слоя */
+    background: #fc0; /* Цвет фона */
+	float: left;
+   }
+   
+.content {
+    width: 70%;/* Ширина слоя */
+    background: #fc0; /* Цвет фона */
+	float: left;
+    padding: 5px; /* Поля вокруг текста */
+   }
+
+    

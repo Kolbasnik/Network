@@ -104,7 +104,7 @@ public class DBUserRepository implements UserRepository{
 	    Session session = null;
 	    try {
 	        session = HibernateUtil.getSessionFactory().openSession();
-	        return session.createSQLQuery("select * from USERS").addEntity(User.class).list();
+	        return (List<User>)session.createSQLQuery("select * from USERS").addEntity(User.class).list();
 	    } catch (Exception e) {
 	        JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
 	        return null;
@@ -116,39 +116,23 @@ public class DBUserRepository implements UserRepository{
 	}
 
 
-public User searchUserByEmail(String email) {
-    Session session = null;
-    try {
-        session = HibernateUtil.getSessionFactory().openSession();
+	public User searchUserByEmail(String email) {
+		Session session = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
 
-//		http://javaxblog.ru/article/java-hibernate-2/
-//      List <User> users = (List<User>)session.createSQLQuery("select * from USERS where email=1 ").addEntity(User.class).list();
+			Query query = session.createSQLQuery("select * from users where email = :email").addEntity(User.class);
+			return (User) query.setString("email", email).list().get(0);
 
-        Query query = session.createSQLQuery("select * from users where email = :email").addEntity(User.class);
-        return (User) query.setString("email", email).list().get(0);
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
-        return null;
-    } finally {
-        if (session != null && session.isOpen()) {
-            session.close();
-        }
-    }
-}
-//public void deleteStudent(Student stud) throws SQLException {
-//    Session session = null;
-//    try {
-//        session = HibernateUtil.getSessionFactory().openSession();
-//        session.beginTransaction();
-//        session.delete(stud);
-//        session.getTransaction().commit();
-//    } catch (Exception e) {
-//        JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
-//    } finally {
-//        if (session != null && session.isOpen()) {
-//            session.close();
-//        }
-//    }
-//}  
+		} 
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
+			return null;
+		} 
+		finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+	}
 }

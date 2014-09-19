@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<jsp:useBean id="service" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"/>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<jsp:useBean id="service" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"/>
 <%
 	if (session.getAttribute("service") == null) {
 		session.setAttribute("service", service);
@@ -29,11 +30,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Friends online</title>
+
+ 
 </head>
 <body>
-	<div id="menu">
+	<div class="header_menu">
 		<ul>
-			<li><a href="index.jsp">Main</a></li>
+			<li><a href="index.jsp">главная</a></li>
 			<li><a href="users.jsp">Users</a></li>
 			<li><a href="#">CSS</a></li>
 			<li><a href="#" id="nowopen">PHP</a></li>

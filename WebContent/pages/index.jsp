@@ -1,48 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="header.jsp" /> 
+	<jsp:include page="header.jsp" />
+	<jsp:useBean id="service" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"/>
 </head>
 <body>
-	<H1>
-		Main text<br>
-		<% 
-String queryData = request.getQueryString();
-out.println("Added data query: " + queryData); 
-%>
-	</H1>
- <table border="1">
-   <caption>Таблица размеров обуви</caption>
-   <tr>
-    <th>Россия</th>
-    <th>Великобритания</th>
-    <th>Европа</th>
-    <th>Длина ступни, см</th>
-   </tr>
-   <tr><td>34,5</td><td>3,5</td><td>36</td><td>23</td></tr>
-   <tr><td>35,5</td><td>4</td><td>36⅔</td><td>23–23,5</td></tr>
-   <tr><td>36</td><td>4,5</td><td>37⅓</td><td>23,5</td></tr>
-   <tr><td>36,5</td><td>5</td><td>38</td><td>24</td></tr>
-   <tr><td>37</td><td>5,5</td><td>38⅔</td><td>24,5</td></tr>
-   <tr><td>38</td><td>6</td><td>39⅓</td><td>25</td></tr>
-   <tr><td>38,5</td><td>6,5</td><td>40</td><td>25,5</td></tr>
-   <tr><td>39</td><td>7</td><td>40⅔</td><td>25,5–26</td></tr>
-   <tr><td>40</td><td>7,5</td><td>41⅓</td><td>26</td></tr>
-   <tr><td>40,5</td><td>8</td><td>42</td><td>26,5</td></tr>
-   <tr><td>41</td><td>8,5</td><td>42⅔</td><td>27</td></tr>
-   <tr><td>42</td><td>9</td><td>43⅓</td><td>27,5</td></tr>
-   <tr><td>43</td><td>9,5</td><td>44</td><td>28</td></tr>
-   <tr><td>43,5</td><td>10</td><td>44⅔</td><td>28–28,5</td></tr>
-   <tr><td>44</td><td>10,5</td><td>45⅓</td><td>28,5–29</td></tr>
-   <tr><td>44,5</td><td>11</td><td>46</td><td>29</td></tr>
-   <tr><td>45</td><td>11,5</td><td>46⅔</td><td>29,5</td></tr>
-   <tr><td>46</td><td>12</td><td>47⅓</td><td>30</td></tr>
-   <tr><td>46,5</td><td>12,5</td><td>48</td><td>30,5</td></tr>
-   <tr><td>47</td><td>13</td><td>48⅔</td><td>31</td></tr>
-   <tr><td>48</td><td>13,5</td><td>49⅓</td><td>31,5</td></tr>
-  </table>
-
-</body>
+	<div class="left_menu">
+	<%if (session.getAttribute("user") != null) {%>
+		<ul>
+			<li><a href="#messages">Messages</a></li>
+			<li><a href="#groups">Groups</a></li>
+			<li><a href="profile.jsp">Hello, <%=service.getUserName(session.getAttribute("user"))%></a>
+					<form name="form_logout" action="autorization" method="GET">
+						<input type="submit" value="Exit">
+					</form>
+		</ul>
+	<%} 
+	else {%>
+		<ul>
+			<li><a href="#singin">Sing in</a></li>
+			<li><a href="#register">Register</a></li>
+		</ul>
+	<%}%>
+	</div>
+  	<div class="content">
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh 
+		euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Ut wisis enim 
+		ad minim veniam, quis nostrud exerci tution ullamcorper suscipit lobortis nisl 
+		ut aliquip ex ea commodo consequat. Duis te feugifacilisi.
+	</div>
+ </body>
 </html>
