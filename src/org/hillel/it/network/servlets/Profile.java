@@ -14,6 +14,12 @@ import org.hillel.it.network.model.entity.User;
 @WebServlet(name = "Profile", description = "This is a simple servlet with annotations", urlPatterns = "/pages/profile.jsp")
 public class Profile extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -23,6 +29,9 @@ public class Profile extends HttpServlet {
 		request.getRequestDispatcher("../pages/index.jsp").forward(request,
 				response);
 
+//		String url = (( request.getQueryString() != null ) ? "?" + request.getQueryString() : "" );
+		String url = request.getQueryString();
+		System.out.println("url= "+url);
 	}
 
 	

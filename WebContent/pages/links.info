@@ -1,3 +1,4 @@
 free hosting	https://www.openshift.com/app/account
 hibernate 		http://javaxblog.ru/article/java-hibernate-2/
 html-css		http://htmlbook.ru/content/vstroennye-elementy
+Передача параметров через адресную строку	String url = request.getRequestUrl() + (( request.getQueryString() != null ) ? "?" + request.getQueryString() : "" );
