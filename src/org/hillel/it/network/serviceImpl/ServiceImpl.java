@@ -3,7 +3,10 @@ package org.hillel.it.network.serviceImpl;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
 
 import org.hillel.it.network.infa.config.Configuration;
 import org.hillel.it.network.model.entity.Group;
@@ -259,5 +262,20 @@ public class ServiceImpl implements Service, Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public List<Message> getMessages() {
+		Message msg = new Message(1, 2, "test", "message");
+		List <Message> messages = new ArrayList<Message>();;
+		
+//	    private int messageId;
+//	   	private int senderId;
+//		private int receiverId;
+//	    private String subject;
+//		private String text;
+		messages.add(msg);
+
+		return messages;
 	}
 }

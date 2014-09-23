@@ -27,6 +27,7 @@ public interface Service {
 	void delMessage (Message message);
 	List <Message> searchMessage (String searchParam);
 	void sendMessage (Message message);
+	List <Message> getMessages();
 	
 	void saveWallMessage(Wall wallMessage);
 	void delWallMessage(Wall wallMessage);

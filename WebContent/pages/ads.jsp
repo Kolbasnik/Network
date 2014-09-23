@@ -7,7 +7,7 @@
 </head>
 <body>
   	<div class="content">
-empty	
+No info
 	</div>
  </body>
 </html>

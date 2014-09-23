@@ -32,31 +32,63 @@
  
 </head>
 <body>
-	<div class="header_menu">
+	<div id="menu">
 		<ul>
-			<li><a href="index.jsp">главная</a></li>
-			<li><a href="users.jsp">Users</a></li>
-			<li><a href="#">CSS</a></li>
-			<li><a href="#" id="nowopen">PHP</a></li>
+			<li><a href="index.jsp">Main</a></li>
 			
-			<%if (session.getAttribute("user") == null) {%>
-				<li><a href="register.jsp">Registration	</a>
-			
-				<form name="form_login" action="autorization" method="POST" onsubmit="return validate()">
-					E-mail: <input type="text" id="email" name="email"> 
-					Password: <input type="password" id="password" name="password"> 
-					<input type="hidden" id="redirect" value=<%=request.getParameter("redirect")%>> 
-					<input type="submit" value="Sing in"> 
-				</form>
-				<%} else {	%>
-					<li><a href="profile.jsp">Hello, <%=service.getUserName(session.getAttribute("user"))%></a>
-					<form name="form_logout" action="autorization" method="GET">
-						<input type="submit" value="Exit">
-					</form>
-				<%}%>
 		</ul>
 	</div>
 
-
+	
+	<div class="left_menu">
+	<H4>My Menu</H4>
+	<%if (session.getAttribute("user") != null) {%>
+	<h5>
+		Hello, <%=service.getUserName(session.getAttribute("user"))%>
+		
+	</h5>
+		<ul>
+			<li><a href="ads">My ads</a></li>
+			<li><a href="profile.jsp?friends">My groups</a></li>
+			<li><a href="profile.jsp?page">My page</a>
+			<li><a href="register.jsp">Registration	</a>
+			<li><a href="profile.jsp">Hello, <%=service.getUserName(session.getAttribute("user"))%></a>
+			<li><a href="autorization?exit">Exit</a></li>
+		</ul>
+	<%} 
+	else {%>
+		<ul>
+			<form name="form_login" action="autorization" method="POST" onsubmit="return validate()">
+			<table>
+				<tr>
+					<td>
+						E-mail:
+					</td>
+					<td>
+						<input type="text" id="email" name="email">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Password: 
+					</td>
+					<td>
+						<input type="password" id="password" name="password"> 
+					</td>
+				</tr>
+				<tr> 
+					<td>
+					</td>
+					<td>
+						<input type="submit" value="Sing in">
+					</td>
+				</tr>
+				</table> 
+				</form>
+		
+			<li><a href="register.jsp">Register</a></li>
+		</ul>
+	<%}%>
+	</div>
 </body>
 </html>

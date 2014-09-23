@@ -24,11 +24,15 @@ import org.hillel.it.network.service.Service;
 				HttpServletResponse response) throws ServletException, IOException {
 
 			HttpSession session = request.getSession();
-			session.setAttribute("user", null);
 
-			request.getRequestDispatcher("../pages/index.jsp").forward(request,
-					response);
-
+			if (request.getQueryString().equals("exit")) {
+				session.setAttribute("user", null);
+				response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
+			}
+			
+//			if (request.getQueryString().equals("profile")) {
+//				response.sendRedirect(request.getContextPath() + "/pages/profile.jsp");
+//			}
 		}
 	
 		protected void doPost(HttpServletRequest request,
