@@ -7,7 +7,9 @@
 </head>
 <body>
   	<div class="content">
-No info
+  	<h5>My ads </h5>
+	<a href="newads.jsp">Add new ads</a>
+	
 	</div>
  </body>
 </html>

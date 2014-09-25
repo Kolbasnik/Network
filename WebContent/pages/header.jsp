@@ -32,16 +32,13 @@
  
 </head>
 <body>
-	<div id="menu">
+	<div class="menu">
 		<ul>
 			<li><a href="index.jsp">Main</a></li>
-			
 		</ul>
 	</div>
 
-	
-	<div class="left_menu">
-	<H4>My Menu</H4>
+	<div class="left_menu"> <h5> My menu</h5>	
 	<%if (session.getAttribute("user") != null) {%>
 	<h5>
 		Hello, <%=service.getUserName(session.getAttribute("user"))%>
@@ -85,7 +82,6 @@
 				</tr>
 				</table> 
 				</form>
-		
 			<li><a href="register.jsp">Register</a></li>
 		</ul>
 	<%}%>

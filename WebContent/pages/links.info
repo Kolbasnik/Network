@@ -1,5 +1,12 @@
 free hosting	https://www.openshift.com/app/account
 hibernate 		http://javaxblog.ru/article/java-hibernate-2/
 html-css		http://htmlbook.ru/content/vstroennye-elementy
-Передача параметров через адресную строку	String url = request.getRequestUrl() + (( request.getQueryString() != null ) ? "?" + request.getQueryString() : "" );
-обновление скайп 	http://www.linuxrussia.com/2013/04/skype-ubuntu-1210-1304-1204.html
+
+Send params 	String url = request.getRequestUrl() + (( request.getQueryString() != null ) ? "?" + request.getQueryString() : "" );
+betwen address
+string  
+if i would have	http://javatalks.ru/topics/10036?page=1#44831
+problems with
+JAVA on Linux
+ 
+pop up windows 	http://dbmast.ru/sozdaem-vsplyvayushhuyu-kontaktnuyu-formu-dlya-sajta

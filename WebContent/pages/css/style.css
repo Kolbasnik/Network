@@ -1,14 +1,24 @@
 .left_menu {
 	width: 20%;/* Ширина слоя */
-    background: #fc0; /* Цвет фона */
+	height: 100%;
+    background: #070; /* Цвет фона */
+//    padding: 5px; /* Поля вокруг текста */
 	float: left;
+	color: white;
+	link: white;
+	alink: white;
+	vlink: "white";
    }
    
 .content {
-    width: 70%;/* Ширина слоя */
+    width: 80%;/* Ширина слоя */
     background: #fc0; /* Цвет фона */
 	float: left;
-    padding: 5px; /* Поля вокруг текста */
+    //padding: 5px; /* Поля вокруг текста */
    }
 
+.register {
+	color: teal;
+	font-size: 30px;
+	}
     
