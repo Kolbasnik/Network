@@ -44,15 +44,15 @@ public class Ads extends HttpServlet {
 
 		
 		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user"); 
-		System.out.println("USER PROFILE = " + user);
+//		User user = (User) session.getAttribute("user"); 
+//		System.out.println("USER PROFILE = " + user);
 		
-		session.setAttribute("nick", (Object) user.getNickname());
+/*		session.setAttribute("nick", (Object) user.getNickname());
 		session.setAttribute("name", (Object) user.getName());
 		session.setAttribute("email", (Object) user.getEmail());
 		session.setAttribute("job", (Object) user.getJob());
-		
-		request.getRequestDispatcher("../pages/profile.jsp").forward(request,
+*/		
+		request.getRequestDispatcher("../pages/register.jsp").forward(request,
 				response);
 	}
 }
