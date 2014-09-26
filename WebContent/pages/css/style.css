@@ -1,32 +1,5 @@
-.left_menu {
-	width: 35%;/* Ширина слоя */
-	height: 100%;
-    background: #070; /* Цвет фона */
-//    padding: 5px; /* Поля вокруг текста */
-	float: left;
-	color: white;
-	link: white;
-	alink: white;
-	vlink: "white";
-   }
-   
-.content {
-    width: 65%;/* Ширина слоя */
-    background: #fc0; /* Цвет фона */
-	float: left;
-    //padding: 5px; /* Поля вокруг текста */
-   }
-
-.register {
-	color: teal;
-	font-size: 30px;
-	}
-    
-    
-
-
-body {background: url(images/bg.png);
-	width: 1000px;
+body {background: url(../images/bg.png);
+	width: 730px;
 	margin: 0 auto;
 }
 h1 {
@@ -55,7 +28,7 @@ h1 {
 	position: absolute;
 	width: 600px;
 	height: 340px;
-	background: url(images/envelope.png) center no-repeat;
+	background: url(../images/envelope.png) center no-repeat;
 	z-index:1002;
 	position: relative;
 	margin: 10% auto;
@@ -67,12 +40,12 @@ h1 {
 	height: 31px;
 	display: block;
 	cursor: pointer;/* для случая применения отличных от <a> тегов */
-	background: url(images/close.png);
+	background: url(../images/close.png);
 	text-indent: -4999px;
 }
 /* кнопка закрытия при наведении */
 .close-btn:hover{
-	background: url(images/close-hover.png);
+	background: url(../images/close-hover.png);
 	
 }
 /* оформляем заголовок формы */
@@ -87,7 +60,7 @@ h1 {
 	left: 40px;
 /* можно заменить на другую картинку
    ** или border-bottom: бла бла бла */	
-	background: url(images/divider.png) no-repeat bottom;
+	background: url(../images/divider.png) no-repeat bottom;
 	color: #545151;
 	height: 40px;
 	width: 400px;
@@ -277,3 +250,18 @@ input[type=text]:focus, .your-message:focus {
         background-image: -o-linear-gradient(top,rgb(87,87,87),rgb(136,136,136));
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#575757', endColorstr='#888888');
 }
+
+.left_menu {
+	width: 20%;/* Ширина слоя */
+    background: #fc0; /* Цвет фона */
+	float: left;
+   }
+   
+.content {
+    width: 70%;/* Ширина слоя */
+    background: #fc0; /* Цвет фона */
+	float: left;
+    padding: 5px; /* Поля вокруг текста */
+   }
+
+    
