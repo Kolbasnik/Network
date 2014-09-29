@@ -6,8 +6,8 @@
 	<jsp:useBean id="service" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"/>
 </head>
 <body>
-  	<div class="content">
-empty
+  	<div class="content"> <h5> News</h5>
+		empty
 	</div>
  </body>
 </html>

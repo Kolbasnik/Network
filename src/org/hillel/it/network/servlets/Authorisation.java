@@ -2,6 +2,7 @@ package org.hillel.it.network.servlets;
 
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,9 @@ import org.hillel.it.network.service.Service;
 
 			HttpSession session = request.getSession();
 
-			if (request.getQueryString().equals("exit")) {
+			String url = request.getQueryString(); 
+			
+			if (url.equalsIgnoreCase("exit") && url != null){
 				session.setAttribute("user", null);
 				response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
 			}
@@ -34,6 +37,8 @@ import org.hillel.it.network.service.Service;
 //				response.sendRedirect(request.getContextPath() + "/pages/profile.jsp");
 //			}
 		}
+
+		
 	
 		protected void doPost(HttpServletRequest request,
 				HttpServletResponse response) throws ServletException, IOException {
@@ -42,14 +47,33 @@ import org.hillel.it.network.service.Service;
 			
 			HttpSession session = request.getSession();
 			Service service = (Service) session.getAttribute("service");
-			currentUser = service.userIsValidate(request.getParameter("email"),request.getParameter("password")); 
+			String url = request.getQueryString();
 			
-			if (currentUser != null) {
-				session.setAttribute("user", (Object) currentUser);
+			if (url.equalsIgnoreCase("login") && url != null) {
+				currentUser = service.userIsValidate(request.getParameter("email"),request.getParameter("password")); 
+
+				if (currentUser != null) {
+					session.setAttribute("user", (Object) currentUser);
+				}
 			}
 
-			request.getRequestDispatcher("../pages/index.jsp").forward(request,
-					response);
+			if (url.equalsIgnoreCase("register") && url != null) {
+				// create users and admin
+				String nickname=request.getParameter("nickname");
+				String name=request.getParameter("name");
+				String surname=request.getParameter("surname");
+				String city=request.getParameter("city");
+				String email=request.getParameter("email");
+				String password=request.getParameter("password");
+				
+				int accesLevel = 1; // 0-user, 1-admin
+
+				User user = new User(nickname, name, surname, city, email, password, accesLevel);
+			
+				service.saveUser(user);
+			}
+			response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
+//			request.getRequestDispatcher("../pages/index.jsp").forward(request,	response);
 		}
 		
 

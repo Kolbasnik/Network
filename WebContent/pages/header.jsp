@@ -26,10 +26,8 @@
 	}
 </script>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Friends online</title>
-
- 
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Friends online</title>
 </head>
 <body>
 	<div class="menu">
@@ -38,53 +36,92 @@
 		</ul>
 	</div>
 
-	<div class="left_menu"> <h5> My menu</h5>	
-	<%if (session.getAttribute("user") != null) {%>
-	<h5>
-		Hello, <%=service.getUserName(session.getAttribute("user"))%>
-		
-	</h5>
-		<ul>
-			<li><a href="ads">My ads</a></li>
-			<li><a href="profile.jsp?friends">My groups</a></li>
-			<li><a href="profile.jsp?page">My page</a>
-			<li><a href="register.jsp">Registration	</a>
-			<li><a href="profile.jsp">Hello, <%=service.getUserName(session.getAttribute("user"))%></a>
-			<li><a href="autorization?exit">Exit</a></li>
-		</ul>
-	<%} 
-	else {%>
-		<ul>
-			<form name="form_login" action="autorization" method="POST" onsubmit="return validate()">
-			<table>
-				<tr>
-					<td>
-						E-mail:
-					</td>
-					<td>
-						<input type="text" id="email" name="email">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Password: 
-					</td>
-					<td>
-						<input type="password" id="password" name="password"> 
-					</td>
-				</tr>
-				<tr> 
-					<td>
-					</td>
-					<td>
-						<input type="submit" value="Sing in">
-					</td>
-				</tr>
+	<div class="left_menu"> <h5>Menu for 
+		<%if (session.getAttribute("user") != null) {%>
+			<%=service.getUserName(session.getAttribute("user"))%></h5>
+			<ul>
+				<li><a href="ads">My ads</a></li>
+				<li><a href="profile.jsp?friends">My groups</a></li>
+				<li><a href="profile.jsp?page">My page</a>
+				<li><a href="autorization?exit">Exit</a></li>
+			</ul>
+		<%} else {%>
+			</h5>
+			<form name="form_login" action="autorization?login" method="POST" onsubmit="return validate()">
+				<table>
+					<tr>
+						<td>E-mail:</td>
+						<td><input type="text" id="email" name="email"></td>
+					</tr>
+					<tr>
+						<td>Password:</td>
+						<td><input type="password" id="password" name="password"></td>
+					</tr>
+					<tr> 
+						<td><input type="submit" class="show-btn" value="Sing in"></td>
+						<td><a class="show-btn" href = "javascript:void(0)" onclick = "document.getElementById('register').style.display='block';document.getElementById('fade').style.display='block'">Register</a></td>
+					</tr>
 				</table> 
-				</form>
-			<li><a href="register.jsp">Register</a></li>
-		</ul>
-	<%}%>
+			</form>
+		<%}%>
 	</div>
-</body>
+	<div id="register" class="register">
+		<a class="close-btn" title="Закрыть" href="javascript:void(0)" onclick = "document.getElementById('register').style.display='none';document.getElementById('fade').style.display='none'"></a>
+		<div class="title">input your registration information</div>
+			<form method="POST" action="autorization?register">
+				<table>
+					<tr>
+						<td>Nick :</td>
+						<td><input type="text" name="nickname"/></td>
+					</tr>
+					<tr>
+						<td>Name :</td>
+						<td><input type="text" name="name" /></td>
+					</tr>
+					<tr>
+						<td>Surname :</td>
+						<td><input type="text" name="surname" /></td>
+					</tr>
+					<tr>
+						<td>Birth Day :</td>
+						<td><input type="text" name="birthday" /></td>
+					</tr>
+					<tr>
+						<td>Education :</td>
+						<td><input type="radio" name="education" value="Higher">Higher
+						<input type="radio" name="education" value="School">School</td>
+					</tr>
+					<tr>
+						<td>Job :</td>
+						<td><input type="text" name="job"/></td>
+					</tr>
+					<tr>
+						<td>City :</td>
+						<td>
+							<select name="city">
+								<option value="odessa">Odessa</option>
+								<option value="kiev">Kiev</option>
+								<option value="herson">Herson</option>
+								<option value="balta">Balta</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Email :</td>
+						<td><input type="text" name="email" /></td>
+					</tr>
+					<tr>
+						<td>Password :</td>
+						<td><input type="text" name="password" /></td>
+					</tr>
+					<tr>
+						<td><!--&nbsp;--></td>
+						<td><input type="submit" value="Save"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div id="fade" class="black-overlay">
+		</div>
+	</body>
 </html>
