@@ -41,7 +41,6 @@ public class DBUserRepository implements UserRepository{
 	}
 
 
-	@Override
 	public void delUser(User user) {
 	    Session session = null;
 	    try {
@@ -59,7 +58,6 @@ public class DBUserRepository implements UserRepository{
 	}  
 		
 
-	@Override
 	public User searchUser(String searchParam) {
 	    Session session = null;
 	    User user = null;
@@ -99,7 +97,6 @@ public class DBUserRepository implements UserRepository{
 	}
 
 
-	@Override
 	public List <User> getUsers() {
 	    Session session = null;
 	    try {

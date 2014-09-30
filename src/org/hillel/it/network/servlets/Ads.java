@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.hillel.it.network.model.entity.User;
+import org.hillel.it.network.service.Service;
 
 @WebServlet(name = "My ads", description = "This is a simple servlet with annotations", urlPatterns = "/pages/ads")
 public class Ads extends HttpServlet {
@@ -24,13 +25,13 @@ public class Ads extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-//		session.setAttribute("ads", service.getAds());
+		Service service = (Service) session.getAttribute("service");
+//		String url = request.getQueryString();
+		
+//		if (url.equalsIgnoreCase("login") && url != null) {
+			session.setAttribute("usersIdName", service.getUsersIdName());
+//		}
 
-//		request.getRequestDispatcher("../pages/register.jsp").forward(request,
-//				response);
-
-		String url = request.getContextPath() + "/pages/register.jsp"; //redirect on user side
-		System.out.println("url "+url);
 		response.sendRedirect(request.getContextPath() + "/pages/ads.jsp");
 		
 //		String url = (( request.getQueryString() != null ) ? "?" + request.getQueryString() : "" );

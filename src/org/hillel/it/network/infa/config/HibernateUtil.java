@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.hillel.it.network.model.entity.Ad;
 import org.hillel.it.network.model.entity.Message;
 import org.hillel.it.network.model.entity.User;
  
@@ -20,6 +21,7 @@ public class HibernateUtil {
             Configuration configuration = new Configuration();
             configuration.configure("hibernate.cfg.xml");
             configuration.addAnnotatedClass(User.class);
+            configuration.addAnnotatedClass(Ad.class);
             configuration.addAnnotatedClass(Message.class);
             System.out.println("Hibernate Configuration loaded");
              

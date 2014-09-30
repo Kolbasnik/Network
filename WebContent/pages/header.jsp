@@ -27,7 +27,7 @@
 </script>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Friends online</title>
+	<title>Стыковка</title>
 </head>
 <body>
 	<div class="menu">

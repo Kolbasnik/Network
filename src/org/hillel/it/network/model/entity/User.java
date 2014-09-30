@@ -20,9 +20,10 @@ public class User extends BaseEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	public User () {
-		
+
 	}
-    @Id
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
 	private int id;
@@ -62,7 +63,10 @@ public class User extends BaseEntity implements Serializable{
 
 	@Column(name="countNewWallMessages")
 	private int countNewWallMessages;
-	
+
+	@Column(name="telephone")
+	private String telephone;
+
 //	private List <Integer> messageId;
 	
 	public User(String nickname, String name, String surname, String city, String email,

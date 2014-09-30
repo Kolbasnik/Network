@@ -12,5 +12,6 @@
 		<property name="show_sql">true</property>
 	   <!--        <mapping jar="hibernate-mappings.jar"/> -->
 	   <mapping class="org.hillel.it.network.model.entity.User" />
+	   <mapping class="org.hillel.it.network.model.entity.Ad" />
     </session-factory>
 </hibernate-configuration>

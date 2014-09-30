@@ -2,23 +2,27 @@ package org.hillel.it.network.serviceImpl;
 
 
 import java.io.Serializable;
-import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 
 import org.hillel.it.network.infa.config.Configuration;
+import org.hillel.it.network.model.entity.Ad;
 import org.hillel.it.network.model.entity.Group;
 import org.hillel.it.network.model.entity.Message;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.model.entity.Wall;
+import org.hillel.it.network.persistance.db.DBAdRepository;
 import org.hillel.it.network.persistance.db.DBMessageRepository;
 import org.hillel.it.network.persistance.db.DBUserRepository;
 import org.hillel.it.network.persistance.file.FileUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryMessageRepository;
 import org.hillel.it.network.persistance.memory.MemoryWallRepository;
+import org.hillel.it.network.persistance.repository.AdRepository;
 import org.hillel.it.network.persistance.repository.GroupRepository;
 import org.hillel.it.network.persistance.repository.MessageRepository;
 import org.hillel.it.network.persistance.repository.UserRepository;
@@ -33,6 +37,7 @@ public class ServiceImpl implements Service, Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private UserRepository userRepository;
+	private AdRepository adRepository;
 	private GroupRepository groupRepository;
 	private MessageRepository messageRepository;
 	private WallRepository wallRepository;
@@ -67,12 +72,14 @@ public class ServiceImpl implements Service, Serializable{
 
 
 		userRepository = new DBUserRepository();
+		adRepository = new DBAdRepository();
 		groupRepository = new MemoryGroupRepository();
 		messageRepository = new DBMessageRepository();
 		wallRepository=new MemoryWallRepository();
 		
 	}
 
+	//-----------------------------------------------------------------------------------	
 	/**
 	 * the method for saving the user to the repository
 	 * 
@@ -137,9 +144,7 @@ public class ServiceImpl implements Service, Serializable{
 	}
 
 	public User userIsValidate (String email, String password ) {
-		System.out.println("search by...mail "+email);
 		User user = userRepository.searchUserByEmail(email);
-		System.out.println(user);
 		
 		if ((user != null) && (user.validUser(email, password))) {
 			return user;
@@ -149,10 +154,28 @@ public class ServiceImpl implements Service, Serializable{
 		}
 	}
 
-	
-/**
- * the method for saving a group to the repository
- */
+	public Map<Integer, String> getUsersIdName() {
+		List <User> users;
+		Map <Integer, String> usersIdName = new HashMap<Integer, String>();
+		
+		users=userRepository.getUsers();
+		for (User currentUsers: users) {
+			usersIdName.put(currentUsers.getId(), currentUsers.getName());
+		}
+		
+		Map <Integer, String> map = usersIdName;
+  		for(Map.Entry<Integer, String> currentUser : map.entrySet()){
+  			System.out.println( currentUser.getKey() + " " + currentUser.getValue());
+  		}
+		
+		return usersIdName;
+	}
+
+	// Group part
+	//-----------------------------------------------------------------------------------	
+	/**
+	 * the method for saving a group to the repository
+	 */
 	public void saveGroup(Group group) {
 		if (group != null) {
 			groupRepository.saveGroup(group);
@@ -278,4 +301,35 @@ public class ServiceImpl implements Service, Serializable{
 
 		return messages;
 	}
+	
+	// Ad part
+	//-----------------------------------------------------------------------------------	
+	public void saveAd(Ad ad) {
+		adRepository.saveAd(ad);
+	}
+
+	public boolean delAd(int id) {
+		return adRepository.delAd(id);
+	}
+
+	public Ad getAdById(int id) {
+		if (id > 0) {
+			return adRepository.getAdById(id);
+		}
+		else
+			return null;
+	}
+
+	public List<Ad> getAds() {
+		return null;
+	}
+
+	public List<Ad> getOwnerAds(int idOwner) {
+		if (idOwner > 0) {
+			return adRepository.getOwnerAds(idOwner);
+		}
+		else
+			return null;
+	}
+
 }
