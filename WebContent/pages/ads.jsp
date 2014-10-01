@@ -4,8 +4,8 @@
 <head>
 	<jsp:include page="header.jsp" />
 	<jsp:useBean id="service" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"/>
-	<%@ page import="java.util.HashMap"%>
-	<%@ page import="java.util.Map"%>
+	<%@ page import="java.util.List"%>
+	<%@ page import="org.hillel.it.network.model.entity.Ad"%>
 </head>
 	<body>
   	  	<div class="content">
@@ -14,17 +14,21 @@
 					<thead>
                 		<tr>
                     		<th width="5%">Id</th>
-                    		<th width="20%">Name</th>
-                    		<th width="20%">Surname</th>
+                    		<th width="20%">Производитель</th>
+                    		<th width="20%">Модель</th>
+                    		<th width="20%">Дата публикации</th>
                 		</tr>
 					</thead>
   			<tbody>
-  	  		<%Map <Integer, String> map = (HashMap<Integer, String>)session.getAttribute("myAds");             
-  	  		for (Map.Entry<Integer, String> entry : map.entrySet()) {
+
+  	  		<%List <Ad> ads = (List <Ad>)session.getAttribute("myads");             
+  	  		for (int i=0; i< ads.size(); i++) {
             %>
             	<tr>
-	                <td><%=entry.getKey()%></td>
-                	<td><%=entry.getValue()%></td>
+	                <td><%=ads.get(i).getId()%></td>
+	                <td><%=ads.get(i).getManufacturer()%></td>
+                	<td><%=ads.get(i).getModel()%></td>
+                	<td><%=ads.get(i).getPrice()%></td>
             	</tr>
             <%}%>
             </tbody>

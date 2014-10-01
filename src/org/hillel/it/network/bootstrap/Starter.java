@@ -11,9 +11,9 @@ public class Starter {
 		System.out.println("Progect was running");
 		
 		Service service = new ServiceImpl();
-//		Ad ad = new Ad("Samsung","TV Plazma","Need today",3,3);
-//		service.saveAd(ad);
-//		System.out.println(service.getOwnerAds(3));
+		Ad ad = new Ad("Samsung","TV Plazma","Need today",3,3,500);
+		service.saveAd(ad);
+		System.out.println(service.getAdsName());
 //		service.delAd(4);
 
 

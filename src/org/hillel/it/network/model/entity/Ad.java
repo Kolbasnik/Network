@@ -13,6 +13,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="ads")
 public class Ad implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ad_id")
@@ -35,18 +40,22 @@ public class Ad implements Serializable{
 	
 	@Column(name="id_owner")
 	private int idOwner;
+	
+	@Column(name="price")
+	private int price;
 
 	public Ad () {
 		
 	}
 	
-	public Ad (String manufacturer, String model, String note, int lifeTime, int idOwner) {
+	public Ad (String manufacturer, String model, String note, int lifeTime, int idOwner, int price) {
 		this.manufacturer=manufacturer;
 		this.model=model;
 		this.note=note;
 //		this.createDate=createDate;
 		this.lifeTime=lifeTime;
 		this.idOwner=idOwner;
+		this.price=price;
 	}
 	
 
@@ -105,4 +114,13 @@ public class Ad implements Serializable{
 	public void setIdOwner(int idOwner) {
 		this.idOwner = idOwner;
 	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 }

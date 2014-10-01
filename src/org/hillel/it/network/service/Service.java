@@ -27,6 +27,7 @@ public interface Service {
 	Ad getAdById (int id);
 	List <Ad> getAds ();
 	List <Ad> getOwnerAds (int idOwner);
+	List <String> getAdsName();
 
 	
 	void saveGroup (Group group);

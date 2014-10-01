@@ -4,10 +4,9 @@ package org.hillel.it.network.serviceImpl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import javax.persistence.Column;
 
 import org.hillel.it.network.infa.config.Configuration;
 import org.hillel.it.network.model.entity.Ad;
@@ -18,18 +17,14 @@ import org.hillel.it.network.model.entity.Wall;
 import org.hillel.it.network.persistance.db.DBAdRepository;
 import org.hillel.it.network.persistance.db.DBMessageRepository;
 import org.hillel.it.network.persistance.db.DBUserRepository;
-import org.hillel.it.network.persistance.file.FileUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
-import org.hillel.it.network.persistance.memory.MemoryMessageRepository;
 import org.hillel.it.network.persistance.memory.MemoryWallRepository;
 import org.hillel.it.network.persistance.repository.AdRepository;
 import org.hillel.it.network.persistance.repository.GroupRepository;
 import org.hillel.it.network.persistance.repository.MessageRepository;
 import org.hillel.it.network.persistance.repository.UserRepository;
 import org.hillel.it.network.persistance.repository.WallRepository;
-import org.hillel.it.network.pull.DBConnectionPool;
 import org.hillel.it.network.service.Service;
-
 
 public class ServiceImpl implements Service, Serializable{
 		/**
@@ -332,4 +327,9 @@ public class ServiceImpl implements Service, Serializable{
 			return null;
 	}
 
+	@Override
+	public List<String> getAdsName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

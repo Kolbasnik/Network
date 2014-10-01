@@ -64,8 +64,8 @@ public class User extends BaseEntity implements Serializable{
 	@Column(name="countNewWallMessages")
 	private int countNewWallMessages;
 
-	@Column(name="telephone")
-	private String telephone;
+//	@Column(name="telephone")
+//	private String telephone;
 
 //	private List <Integer> messageId;
 	

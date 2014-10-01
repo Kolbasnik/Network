@@ -4,6 +4,7 @@
 <html>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<jsp:useBean id="service" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"/>
+	<%@ page import="org.hillel.it.network.model.entity.User"%>
 <%
 	if (session.getAttribute("service") == null) {
 		session.setAttribute("service", service);
@@ -39,8 +40,11 @@
 	<div class="left_menu"> <h5>Menu for 
 		<%if (session.getAttribute("user") != null) {%>
 			<%=service.getUserName(session.getAttribute("user"))%></h5>
+			<%User user = (User)session.getAttribute("user");  %>
+			<br>
+			<h5>ID = <%=user.getId() %></h5>
 			<ul>
-				<li><a href="ads">My ads</a></li>
+				<li><a href="ads?myads">My ads</a></li>
 				<li><a href="profile.jsp?friends">My groups</a></li>
 				<li><a href="profile.jsp?page">My page</a>
 				<li><a href="autorization?exit">Exit</a></li>

@@ -26,11 +26,12 @@ public class Ads extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Service service = (Service) session.getAttribute("service");
-//		String url = request.getQueryString();
+		String url = request.getQueryString();
+		User user = (User) session.getAttribute("user");
 		
-//		if (url.equalsIgnoreCase("login") && url != null) {
-			session.setAttribute("usersIdName", service.getUsersIdName());
-//		}
+		if (url.equalsIgnoreCase("myads") && url != null) {
+			session.setAttribute("myads", service.getOwnerAds(3/*user.getId()*/));
+		}
 
 		response.sendRedirect(request.getContextPath() + "/pages/ads.jsp");
 		
