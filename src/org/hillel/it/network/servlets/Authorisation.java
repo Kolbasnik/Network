@@ -65,10 +65,14 @@ import org.hillel.it.network.service.Service;
 				String city=request.getParameter("city");
 				String email=request.getParameter("email");
 				String password=request.getParameter("password");
-				
-				int accesLevel = 1; // 0-user, 1-admin
+				String sAccessLevel=request.getParameter("accesslevel");
 
-				User user = new User(nickname, name, surname, city, email, password, accesLevel);
+				int accessLevel = 0; 
+				if (!sAccessLevel.isEmpty() || sAccessLevel != null) {
+					accessLevel=Integer.parseInt(sAccessLevel);
+				}
+
+				User user = new User(nickname, name, surname, city, email, password, accessLevel);
 			
 				service.saveUser(user);
 			}

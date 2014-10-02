@@ -55,8 +55,8 @@ public class User extends BaseEntity implements Serializable{
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="acceslevel")
-	private int accesLevel; // 0-user, 1-admin
+	@Column(name="accesslevel")
+	private int accessLevel; // 0-user, 1-admin, 2-seller
 	
 	@Column(name="countNewMessages")
 	private int countNewMessages;
@@ -82,7 +82,7 @@ public class User extends BaseEntity implements Serializable{
 			this.city = city;
 			this.email = email;
 			this.password = password;
-			this.accesLevel = accesLevel;
+			this.accessLevel = accesLevel;
 			this.countNewMessages=0;
 			this.countNewWallMessages=0;
 			calendar.getTime();
@@ -91,6 +91,7 @@ public class User extends BaseEntity implements Serializable{
 			}
 			setModifiedDate(calendar);
 //			setCreateBy(getId());
+			
 		}
 	}
 	
@@ -112,15 +113,9 @@ public class User extends BaseEntity implements Serializable{
 	}
 
 	public boolean validUser (String searchEmail, String searchPassword) {
-		System.out.println("vlidate email "+searchEmail);
-		System.out.println("vlidate pass "+searchPassword);
-		
 		if (searchEmail.equalsIgnoreCase(email) && searchPassword.equalsIgnoreCase(password)) {
-			System.out.println("vlidate");
 			return true;
 		}
-
-		System.out.println("Wrong vlidate");
 		return false;
 	}
 	
@@ -204,11 +199,11 @@ public class User extends BaseEntity implements Serializable{
 	}
 
 	public int getAccesLevel() {
-		return accesLevel;
+		return accessLevel;
 	}
 
 	public void setAccesLevel(int accesLevel) {
-		this.accesLevel = accesLevel;
+		this.accessLevel = accesLevel;
 	}
 
 	public int getCountNewMessages() {

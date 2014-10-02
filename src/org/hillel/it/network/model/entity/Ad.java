@@ -1,7 +1,10 @@
 package org.hillel.it.network.model.entity;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +36,7 @@ public class Ad implements Serializable{
 	private String note;
 
 	@Column(name="create_date")
-	private Calendar createDate;
+	private Date createDate;
 	
 	@Column(name="life_time")
 	private int lifeTime;
@@ -45,14 +48,22 @@ public class Ad implements Serializable{
 	private int price;
 
 	public Ad () {
-		
+		Calendar c = new GregorianCalendar();
+	    c.set(Calendar.HOUR_OF_DAY, 0); //anything 0 - 23
+	    c.set(Calendar.MINUTE, 0);
+	    c.set(Calendar.SECOND, 0);
+		createDate=c.getTime();
 	}
 	
 	public Ad (String manufacturer, String model, String note, int lifeTime, int idOwner, int price) {
 		this.manufacturer=manufacturer;
 		this.model=model;
 		this.note=note;
-//		this.createDate=createDate;
+		Calendar c = new GregorianCalendar();
+	    c.set(Calendar.HOUR_OF_DAY, 0); //anything 0 - 23
+	    c.set(Calendar.MINUTE, 0);
+	    c.set(Calendar.SECOND, 0);
+		createDate=c.getTime();
 		this.lifeTime=lifeTime;
 		this.idOwner=idOwner;
 		this.price=price;
@@ -91,11 +102,11 @@ public class Ad implements Serializable{
 		this.note = note;
 	}
 
-	public Calendar getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Calendar date) {
+	public void setCreateDate(Date date) {
 		this.createDate = date;
 	}
 
@@ -122,5 +133,4 @@ public class Ad implements Serializable{
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
 }

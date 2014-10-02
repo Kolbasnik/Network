@@ -28,7 +28,8 @@ public interface Service {
 	List <Ad> getAds ();
 	List <Ad> getOwnerAds (int idOwner);
 	List <String> getAdsName();
-
+	
+	void addToFarites(int id);
 	
 	void saveGroup (Group group);
 	void delGroup (Group group);

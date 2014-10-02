@@ -45,6 +45,9 @@
 			<h5>ID = <%=user.getId() %></h5>
 			<ul>
 				<li><a href="ads?myads">My ads</a></li>
+				<%if (user.getAccesLevel() == 2) {%>
+					<li><a href="ads?favorites">My favorite ads</a></li>
+				<%}%>
 				<li><a href="profile.jsp?friends">My groups</a></li>
 				<li><a href="profile.jsp?page">My page</a>
 				<li><a href="autorization?exit">Exit</a></li>
@@ -91,9 +94,11 @@
 						<td><input type="text" name="birthday" /></td>
 					</tr>
 					<tr>
-						<td>Education :</td>
-						<td><input type="radio" name="education" value="Higher">Higher
-						<input type="radio" name="education" value="School">School</td>
+						<td>Access level :</td>
+						<td>
+							<input type="radio" name="accesslevel" value="1">User
+							<input type="radio" name="accesslevel" value="2">Seller
+						</td>
 					</tr>
 					<tr>
 						<td>Job :</td>

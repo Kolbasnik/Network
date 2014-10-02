@@ -8,7 +8,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hillel.it.network.infa.config.HibernateUtil;
 import org.hillel.it.network.model.entity.Ad;
-import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.persistance.repository.AdRepository;
 
 public class DBAdRepository implements AdRepository{
@@ -61,7 +60,22 @@ public class DBAdRepository implements AdRepository{
 	}
 
 	public Ad getAdById(int id) {
-		return null;
+		Session session = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+
+			Query query = session.createSQLQuery("select * from ads where ad_id = :id").addEntity(Ad.class);
+			return (Ad) query.setInteger("id", id).list().get(0);
+		} 
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
+			return null;
+		} 
+		finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 	}
 
 	public List<Ad> getAds() {
