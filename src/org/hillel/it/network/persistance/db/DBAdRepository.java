@@ -41,6 +41,7 @@ public class DBAdRepository implements AdRepository{
 
 	public boolean delAd(int id) {
 	    Session session = null;
+	    boolean isDel = false;
 	    try {
 	        session = HibernateUtil.getSessionFactory().openSession();
 	        session.beginTransaction();
@@ -48,6 +49,7 @@ public class DBAdRepository implements AdRepository{
 			Ad ad = (Ad) query.setInteger("id", id).list().get(0);
  	        session.delete(ad);
 	        session.getTransaction().commit();
+	        isDel = true;
 	    } catch (Exception e) {
 	        JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
 	    } finally {
@@ -55,8 +57,7 @@ public class DBAdRepository implements AdRepository{
 	            session.close();
 	        }
 	    }
-
-		return false;
+        return isDel;
 	}
 
 	public Ad getAdById(int id) {
@@ -82,7 +83,7 @@ public class DBAdRepository implements AdRepository{
 	    Session session = null;
 	    try {
 	        session = HibernateUtil.getSessionFactory().openSession();
-	        return (List<Ad>)session.createSQLQuery("select * from ADS").addEntity(Ad.class).list();
+	        return (List<Ad>) session.createSQLQuery("select * from ADS").addEntity(Ad.class).list();
 	    } catch (Exception e) {
 	        JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
 	        return null;
@@ -111,6 +112,4 @@ public class DBAdRepository implements AdRepository{
 			}
 		}
 	}
-	
-	
 }

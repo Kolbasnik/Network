@@ -1,6 +1,7 @@
 package org.hillel.it.network.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.hillel.it.network.model.entity.Ad;
+import org.hillel.it.network.model.entity.Favorite;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.service.Service;
 
@@ -28,27 +30,40 @@ public class Ads extends HttpServlet {
 		HttpSession session = request.getSession();
 		Service service = (Service) session.getAttribute("service");
 		String url = request.getQueryString();
+		
+		System.out.println("url " +url);
 		User user = (User) session.getAttribute("user");
 		
 		if (url.equalsIgnoreCase("myAds") && url != null) {
 			session.setAttribute("myads", service.getOwnerAds(user.getId()));
+			session.setAttribute("favorite", null);
+			session.setAttribute("allads", null);
 		}
 
-		if (url.equalsIgnoreCase("favorites") && url != null) {
-			// in this block I must return list of ads, which include in table "favorites_ads"
-			// select * from ads where ad_ad in (select ad_id from favorites where user_id=user.getId())
-			session.setAttribute("favorites", service.getOwnerAds(user.getId()));	
+		if (url.equalsIgnoreCase("allads") && url != null) {
+			List<Ad> ads = service.getAds();
+			System.out.println("ads=" + ads);
+			session.setAttribute("allads", service.getAds());
+			session.setAttribute("favorite", null);
+			session.setAttribute("myads", null);
+		}
+		
+		if (url.equalsIgnoreCase("favorite") && url != null) {
+			session.setAttribute("favorite", service.getFavorites(user.getId()));
+			session.setAttribute("myads", null);
+			session.setAttribute("allads", null);
 		}
 
-		if (url.equalsIgnoreCase("addToFavorites") && url != null) {
+		if (url.startsWith("add") && url != null) {
 			String sId = url.split("&")[1];
 			if (!sId.isEmpty() || sId != null) {
-				int id=Integer.parseInt(sId);
-				service.addToFarites(id);
+				int ad_id=Integer.parseInt(sId);
+				int user_ad = user.getId();
+				
+				Favorite favoriteAd = new Favorite(ad_id, user_ad);
+				service.addFavorite(favoriteAd); 
 			}
-//			session.setAttribute("favorites", service.getOwnerAds(user.getId()));	
 		}
-
 		
 		if (url.startsWith("id") && url != null) {
 			int id=Integer.parseInt(url.split("&")[1]);

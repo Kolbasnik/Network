@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hillel.it.network.model.entity.Ad;
+import org.hillel.it.network.model.entity.Favorite;
 import org.hillel.it.network.model.entity.Group;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.model.entity.Message;
@@ -18,7 +19,6 @@ public interface Service {
 	void saveUser(User user);
 	void delUser(User user);
 	User searchUser(String searchParam);
-//	String getUserName (Object user);
 	User userIsValidate (String login, String password);
 	Map <Integer, String> getUsersIdName();
 
@@ -27,10 +27,13 @@ public interface Service {
 	Ad getAdById (int id);
 	List <Ad> getAds ();
 	List <Ad> getOwnerAds (int idOwner);
-	List <String> getAdsName();
 	
-	void addToFarites(int id);
-	
+	void addFavorite(Favorite favoriteAd);
+	void delFavorite(int ad_id);
+	void delFavoriteByUser (int userId);
+	List <Ad> getFavorites(int userId);
+	public boolean matchFavorite (Ad ad, Object user);
+
 	void saveGroup (Group group);
 	void delGroup (Group group);
 	Group searchGroup (String searchParam);

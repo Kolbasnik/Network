@@ -118,7 +118,7 @@ public class DBUserRepository implements UserRepository{
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 
-			Query query = session.createSQLQuery("select * from users where email = :email").addEntity(User.class);
+			Query query = session.createSQLQuery("select * from USERS where email = :email").addEntity(User.class);
 			return (User) query.setString("email", email).list().get(0);
 
 		} 

@@ -1,25 +1,25 @@
 package org.hillel.it.network.serviceImpl;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-import org.hillel.it.network.infa.config.Configuration;
 import org.hillel.it.network.model.entity.Ad;
+import org.hillel.it.network.model.entity.Favorite;
 import org.hillel.it.network.model.entity.Group;
 import org.hillel.it.network.model.entity.Message;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.model.entity.Wall;
 import org.hillel.it.network.persistance.db.DBAdRepository;
+import org.hillel.it.network.persistance.db.DBFavoriteRepository;
 import org.hillel.it.network.persistance.db.DBMessageRepository;
 import org.hillel.it.network.persistance.db.DBUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryWallRepository;
 import org.hillel.it.network.persistance.repository.AdRepository;
+import org.hillel.it.network.persistance.repository.FavoriteRepository;
 import org.hillel.it.network.persistance.repository.GroupRepository;
 import org.hillel.it.network.persistance.repository.MessageRepository;
 import org.hillel.it.network.persistance.repository.UserRepository;
@@ -33,6 +33,7 @@ public class ServiceImpl implements Service, Serializable{
 	private static final long serialVersionUID = 1L;
 	private UserRepository userRepository;
 	private AdRepository adRepository;
+	private FavoriteRepository favoriteRepository;
 	private GroupRepository groupRepository;
 	private MessageRepository messageRepository;
 	private WallRepository wallRepository;
@@ -68,6 +69,7 @@ public class ServiceImpl implements Service, Serializable{
 
 		userRepository = new DBUserRepository();
 		adRepository = new DBAdRepository();
+		favoriteRepository = new DBFavoriteRepository();
 		groupRepository = new MemoryGroupRepository();
 		messageRepository = new DBMessageRepository();
 		wallRepository=new MemoryWallRepository();
@@ -81,7 +83,6 @@ public class ServiceImpl implements Service, Serializable{
 	 */
 	public void saveUser(User user){
 		if (user != null) {
-			
 			System.out.println("service user= " + user);
 			userRepository.saveUser(user);
 		}
@@ -316,7 +317,7 @@ public class ServiceImpl implements Service, Serializable{
 	}
 
 	public List<Ad> getAds() {
-		return null;
+		return adRepository.getAds();
 	}
 
 	public List<Ad> getOwnerAds(int idOwner) {
@@ -327,9 +328,49 @@ public class ServiceImpl implements Service, Serializable{
 			return null;
 	}
 
-	@Override
-	public List<String> getAdsName() {
-		// TODO Auto-generated method stub
-		return null;
+	// Favorite_ads part
+	//-----------------------------------------------------------------------------------	
+	public void addFavorite(Favorite favoriteAd) {
+		if (favoriteAd != null) {
+			favoriteRepository.addFavorite(favoriteAd);
+		}
+	}
+
+	public void delFavorite(int ad_id) {
+		favoriteRepository.delFavorite(ad_id);
+	}
+
+	public void delFavoriteByUser(int userId) {
+		List<Favorite> favoriteAds = null; //new ArrayList<Favorite>();
+		
+		favoriteAds=favoriteRepository.getFavorites(userId);
+		if (favoriteAds != null) {
+			for (int i=0; i<favoriteAds.size(); i++) {
+				favoriteRepository.delFavorite(favoriteAds.get(i).getAdId());
+			}
+		}
+	}
+
+	public List<Ad> getFavorites(int userId) {
+		List <Ad> ads=new ArrayList<Ad>();
+		List <Favorite> favoriteAds = null;
+
+		favoriteAds=favoriteRepository.getFavorites(userId);
+		if (favoriteAds != null) {
+			for (int i=0; i<favoriteAds.size(); i++) {
+				ads.add(adRepository.getAdById(favoriteAds.get(i).getAdId()));
+			}
+		}
+		
+		return ads;
+	}
+	
+	public boolean matchFavorite (Ad ad, Object user) {
+		User usr=(User) user;
+		boolean isMatch = false;
+		if (ad != null || user != null) {
+			isMatch=favoriteRepository.matchFavorite(ad.getId(), usr.getId());
+		}
+		return isMatch;
 	}
 }

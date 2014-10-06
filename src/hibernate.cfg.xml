@@ -13,5 +13,6 @@
 	   <!--        <mapping jar="hibernate-mappings.jar"/> -->
 	   <mapping class="org.hillel.it.network.model.entity.User" />
    	   <mapping class="org.hillel.it.network.model.entity.Ad" />
-    </session-factory>
+	   <mapping class="org.hillel.it.network.model.entity.Favorite" />
+   </session-factory>
 </hibernate-configuration>

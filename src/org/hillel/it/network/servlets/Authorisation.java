@@ -53,7 +53,10 @@ import org.hillel.it.network.service.Service;
 				currentUser = service.userIsValidate(request.getParameter("email"),request.getParameter("password")); 
 
 				if (currentUser != null) {
-					session.setAttribute("user", (Object) currentUser);
+					session.setAttribute("user", currentUser);
+				}
+				else {
+					response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
 				}
 			}
 
@@ -67,13 +70,12 @@ import org.hillel.it.network.service.Service;
 				String password=request.getParameter("password");
 				String sAccessLevel=request.getParameter("accesslevel");
 
-				int accessLevel = 0; 
+				int accessLevel = 0; // 0-user, 1-admin, 2-seller
 				if (!sAccessLevel.isEmpty() || sAccessLevel != null) {
 					accessLevel=Integer.parseInt(sAccessLevel);
 				}
 
 				User user = new User(nickname, name, surname, city, email, password, accessLevel);
-			
 				service.saveUser(user);
 			}
 			response.sendRedirect(request.getContextPath() + "/pages/index.jsp");

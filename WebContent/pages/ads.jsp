@@ -12,43 +12,65 @@
 		  	<h5>My ads </h5>
 		  	<%if (session.getAttribute("ad") != null) {
 		  	 	Ad ad = (Ad) session.getAttribute("ad");%>
-         		<td><%=ad.getManufacturer()%></td>
-     			<td><%=ad.getModel()%></td>
-     			<td><%=ad.getNote()%></td>
-     			<td><%=ad.getCreateDate()%></td>
-     			<td><%=ad.getPrice()%></td>
+		  	 	<table>
+		  	 		<tr>
+	         			<td><%=ad.getManufacturer()%></td>
+     					<td><%=ad.getModel()%></td>
+     					<td><%=ad.getNote()%></td>
+     					<td><%=ad.getCreateDate()%></td>
+     					<td><%=ad.getPrice()%></td>
+     				</tr>
+     			</table>
 		  	 <%}%>
 		  	<%if (session.getAttribute("user") != null) {%>
 				<table>
 					<thead>
-                		<tr>
-                    		<th width="5%">Id</th>
-                    		<th width="20%">Производитель</th>
-                    		<th width="20%">Модель</th>
-                    		<th width="20%">Цена</th>
-                    		<th width="20%">Дата публикации</th>
-                		</tr>
+               			<tr>
+                    		<th width="5%">№</th>
+                  			<th width="15%">Производитель</th>
+                   			<th width="20%">Модель</th>
+                   			<th width="20%">Цена, грн</th>
+                   			<th width="20%">Дата публикации</th>
+                   			<th width="20%">Добавить в избранное</th>
+                   			
+               			</tr>
 					</thead>
-  			<tbody>
-  	  		<%List <Ad> ads = (List<Ad>)session.getAttribute("myads");
-  	  			int id;
-  	  			for (int i=0; i< ads.size(); i++) {
-  	  				id=ads.get(i).getId();
-            	%>
-	            	<tr>
-	                	<td><a href="ads?id&<%=id%>"><%=id%></a></td>
-	                	<td><a href="ads?id&<%=id%>"><%=ads.get(i).getManufacturer()%></a></td>
-                		<td><a href="ads?id&<%=id%>"><%=ads.get(i).getModel()%></a></td>
-                		<td><a href="ads?id&<%=id%>"><%=ads.get(i).getCreateDate()%></a></td>
-                		<td><a href="ads?id&<%=id%>"><%=ads.get(i).getPrice()%></a></td>
-            		</tr>
-            	<%}%>
-            </tbody>
-            <%} 
+  					<tbody>
+					<%
+					List <Ad> ads =null;
+  	  				int id;
+					if (session.getAttribute("allads") != null) {
+						ads = (List<Ad>)session.getAttribute("allads");
+					}
+					if (session.getAttribute("myads") != null) {
+						ads = (List<Ad>)session.getAttribute("myads");
+					}
+					if (session.getAttribute("favorite") != null) {
+						ads = (List<Ad>)session.getAttribute("favorite");
+					}	
+					if (ads != null)
+  	  				for (int i=0; i< ads.size(); i++) {
+		  	  			id=ads.get(i).getId();%>
+	            		<tr>
+		                	<td><a href="ads?id&<%=id%>"><%=id%></a></td>
+	                		<td><a href="ads?id&<%=id%>"><%=ads.get(i).getManufacturer()%></a></td>
+                			<td><a href="ads?id&<%=id%>"><%=ads.get(i).getModel()%></a></td>
+                			<td><a href="ads?id&<%=id%>"><%=ads.get(i).getPrice()%></a></td>
+                			<td><a href="ads?id&<%=id%>"><%=ads.get(i).getCreateDate().toString().substring(0, 10)%></a></td>
+                			<%if (service.matchFavorite(ads.get(i), session.getAttribute("user"))){ %>
+                 				<td><a href="del?add&<%=id%>">Del from favorite</a></td> 
+                			<%}
+                			else {%>
+                				<td><a href="ads?add&<%=id%>">Add to favorite</a></td>
+                			<%} %>
+            			</tr>
+            		<%}%>
+            		</tbody>
+            	</table>
+            <%}
 		  	else { %>
-		  	<p>Please register</p>
-		  	<%} %>
-</table>
+			  	<h5>Please register</h5>
+		  	<%}%>
 
 			<a class="show-btn" href = "javascript:void(0)" onclick = "document.getElementById('newad').style.display='block';document.getElementById('fade').style.display='block'">Ad new ads</a>
 			<div id="newad" class="register">
