@@ -25,6 +25,7 @@ import org.hillel.it.network.service.Service;
 				HttpServletResponse response) throws ServletException, IOException {
 
 			HttpSession session = request.getSession();
+			request.setCharacterEncoding("UTF-8");
 
 			String url = request.getQueryString(); 
 			
@@ -45,7 +46,9 @@ import org.hillel.it.network.service.Service;
 
 			User currentUser;
 			
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession();			
+			request.setCharacterEncoding("UTF-8");
+
 			Service service = (Service) session.getAttribute("service");
 			String url = request.getQueryString();
 			

@@ -16,8 +16,6 @@ public class DBMessageRepository implements MessageRepository{
 			Message msg = new Message (1,1,"x","y");
 			System.out.println("try to connect");
 			session = HibernateUtil.getSessionFactory().openSession();
-			System.out.println("good session= "+ session);
-			System.out.println("good message= "+ message);
 
 			session.beginTransaction();
 	        session.save(msg);

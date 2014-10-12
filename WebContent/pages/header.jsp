@@ -1,8 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+	<script type="text/javascript" src="js/validate.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/ad.css">
+ 	<link rel="stylesheet" type="text/css" href="css/register.css"> 
 	<jsp:useBean id="service" class="org.hillel.it.network.serviceImpl.ServiceImpl" scope="application"/>
 	<%@ page import="org.hillel.it.network.model.entity.User"%>
 <%
@@ -10,22 +13,7 @@
 		session.setAttribute("service", service);
 	}
 %> 
-<script type="text/javascript">
-	function validate() {
-		var login = document.getElementById("email");
-		var password = document.getElementById("password");
 
-		if (login.value == "") {
-			alert('Enter email');
-			return false;
-		}
-		if (password.value == "") {
-			alert('Enter password');
-			return false;
-		}
-		return true;
-	}
-</script>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Стыковка</title>

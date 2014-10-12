@@ -34,7 +34,11 @@ public class Message extends BaseEntity {
     @Column(name="isSending")
 	private boolean isSending;
 	
-	public Message (int senderId, int receiverId, String subject, String text) {
+    public Message () {
+    	
+    }
+    	
+    public Message (int senderId, int receiverId, String subject, String text) {
 		
 //		super();
 		

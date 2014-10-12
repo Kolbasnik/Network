@@ -7,20 +7,26 @@ import java.util.List;
 import java.util.Map;
 
 import org.hillel.it.network.model.entity.Ad;
+import org.hillel.it.network.model.entity.Device;
 import org.hillel.it.network.model.entity.Favorite;
 import org.hillel.it.network.model.entity.Group;
+import org.hillel.it.network.model.entity.Manufacturer;
 import org.hillel.it.network.model.entity.Message;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.model.entity.Wall;
 import org.hillel.it.network.persistance.db.DBAdRepository;
+import org.hillel.it.network.persistance.db.DBDeviceRepository;
 import org.hillel.it.network.persistance.db.DBFavoriteRepository;
+import org.hillel.it.network.persistance.db.DBManufacturerRepository;
 import org.hillel.it.network.persistance.db.DBMessageRepository;
 import org.hillel.it.network.persistance.db.DBUserRepository;
 import org.hillel.it.network.persistance.memory.MemoryGroupRepository;
 import org.hillel.it.network.persistance.memory.MemoryWallRepository;
 import org.hillel.it.network.persistance.repository.AdRepository;
+import org.hillel.it.network.persistance.repository.DeviceRepository;
 import org.hillel.it.network.persistance.repository.FavoriteRepository;
 import org.hillel.it.network.persistance.repository.GroupRepository;
+import org.hillel.it.network.persistance.repository.ManufacturerRepository;
 import org.hillel.it.network.persistance.repository.MessageRepository;
 import org.hillel.it.network.persistance.repository.UserRepository;
 import org.hillel.it.network.persistance.repository.WallRepository;
@@ -34,6 +40,8 @@ public class ServiceImpl implements Service, Serializable{
 	private UserRepository userRepository;
 	private AdRepository adRepository;
 	private FavoriteRepository favoriteRepository;
+	private ManufacturerRepository manufacturerRepository; 
+	private DeviceRepository deviceRepository; 
 	private GroupRepository groupRepository;
 	private MessageRepository messageRepository;
 	private WallRepository wallRepository;
@@ -69,7 +77,9 @@ public class ServiceImpl implements Service, Serializable{
 
 		userRepository = new DBUserRepository();
 		adRepository = new DBAdRepository();
+		deviceRepository = new DBDeviceRepository();
 		favoriteRepository = new DBFavoriteRepository();
+		manufacturerRepository = new DBManufacturerRepository();
 		groupRepository = new MemoryGroupRepository();
 		messageRepository = new DBMessageRepository();
 		wallRepository=new MemoryWallRepository();
@@ -372,5 +382,73 @@ public class ServiceImpl implements Service, Serializable{
 			isMatch=favoriteRepository.matchFavorite(ad.getId(), usr.getId());
 		}
 		return isMatch;
+	}
+
+	// Manufacturers part
+	//-----------------------------------------------------------------------------------	
+	public List<Manufacturer> getManufacturers() {
+		return manufacturerRepository.getManufacturers();
+	}
+
+	public boolean addManufacturer(Manufacturer manufacturer) {
+		boolean isAdded = true;
+		List <Manufacturer> mf = new ArrayList <Manufacturer> ();
+		mf = manufacturerRepository.getManufacturers();
+		
+		if (mf != null) {
+			for (int i=0; i< mf.size(); i++) {
+				if (mf.get(i).getName().equalsIgnoreCase(manufacturer.getName())){
+					isAdded=false;
+				}
+			}
+			if (isAdded == true) {
+				manufacturerRepository.addManufacturer(manufacturer);
+			}
+		}
+		else {
+			isAdded=false;
+		}
+		return isAdded;
+	}
+
+	public void delManufacturer(Manufacturer manufacturer) {
+		manufacturerRepository.delManufacturer(manufacturer);
+	}
+
+	
+	// Device part
+	//-----------------------------------------------------------------------------------	
+	@Override
+	public List<Device> getDevices() {
+		return deviceRepository.getDevices();
+	}
+
+	public List<Device> getDevicesByManufacturer(int idManufacturer) {
+		return deviceRepository.getDevicesByManufacturer(idManufacturer);
+	}
+
+	public boolean addDevice(Device device) {
+		boolean isAdded = true;
+		List <Device> devices = new ArrayList <Device> ();
+		devices = deviceRepository.getDevices();
+		
+		if (devices != null) { 
+			for (int i=0; i< devices.size(); i++) {
+				if (devices.get(i).getName().equalsIgnoreCase(device.getName())){
+					isAdded=false;
+				}
+			}
+			if (isAdded == true) {
+				deviceRepository.addDevice(device);
+			}
+		}
+		else {
+			isAdded=false;
+		}
+		return isAdded;
+	}
+
+	public void delDevice(Device device) {
+		deviceRepository.delDevice(device);
 	}
 }

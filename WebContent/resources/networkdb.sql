@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Окт 06 2014 г., 16:09
+-- Время создания: Окт 08 2014 г., 16:34
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.13
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `id_owner` int(11) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   PRIMARY KEY (`AD_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- Дамп данных таблицы `ads`
@@ -44,14 +44,37 @@ CREATE TABLE IF NOT EXISTS `ads` (
 
 INSERT INTO `ads` (`AD_ID`, `manufacturer`, `model`, `note`, `CREATE_DATE`, `life_time`, `id_owner`, `price`) VALUES
 (24, 'Samsung', 'TV', '1', '2014-10-02', 1, 7, 1),
-(25, 'Ð¡Ð°ÑÑÑÐ½', 'Ð³ÑÐµÐ±Ð°Ð½ÑÐ¹ Ð¿ÑÐ»ÐµÑÐ¾Ñ', 'Хочу сегодня', '2014-10-02', 5, 7, 300),
-(26, 'samsung', 'tvtv', '* ÐÑÐ¸Ð¼Ð¸ÑÐ°Ð½Ð¸Ðµ', '2014-10-03', 5, 15, 3000),
 (27, 'LG', 'microwave', 'cheap', '2014-10-03', 1, 16, 600),
-(28, 'Sony', 'telephone z1', '* ÐÑÐ¸Ð¼Ð¸ÑÐ°Ð½Ð¸Ðµ', '2014-10-03', 1, 16, 4000),
 (29, 'Samsung', 'TV 42"', 'for new year', '2014-10-03', 10, 17, 3000),
-(30, '1', '1', '1', '2014-10-03', 1, 16, 1),
-(31, '2', '2', '2', '2014-10-03', 1, 16, 2),
-(32, '3', '3', '3', '2014-10-03', 30, 16, 3);
+(33, 'Tefal', 'utug', 'today and new', '2014-10-08', 1, 16, 100),
+(37, 'Sony', 'Телефон Iphone 6 1', '1', '2014-10-08', 10, 16, 1),
+(38, 'Apple', 'ноутбук Mac Book Pro самая новая модель', 'срочно', '2014-10-08', 1, 16, 4000),
+(39, 'Sony', 'плоский телевизор', 'по Одессе', '2014-10-08', 1, 16, 5),
+(40, 'Sony', 'Телефон Iphone 6 ыыы', 'ы', '2014-10-08', 1, 16, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `devices`
+--
+
+CREATE TABLE IF NOT EXISTS `devices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_manufacturer` int(11) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Дамп данных таблицы `devices`
+--
+
+INSERT INTO `devices` (`id`, `id_manufacturer`, `name`) VALUES
+(1, 1, 'Чайник'),
+(2, 1, 'Телевизор'),
+(3, 1, 'Телефон'),
+(4, 3, 'Телефон Iphone 6'),
+(5, 3, 'ноутбук Mac Book Pro');
 
 -- --------------------------------------------------------
 
@@ -63,6 +86,40 @@ CREATE TABLE IF NOT EXISTS `favorite_ads` (
   `user_id` int(11) DEFAULT NULL,
   `ad_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `favorite_ads`
+--
+
+INSERT INTO `favorite_ads` (`user_id`, `ad_id`) VALUES
+(17, 24),
+(16, 33);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `manufacturers`
+--
+
+CREATE TABLE IF NOT EXISTS `manufacturers` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Дамп данных таблицы `manufacturers`
+--
+
+INSERT INTO `manufacturers` (`ID`, `NAME`) VALUES
+(1, 'Sony'),
+(2, 'Samsung'),
+(3, 'Apple'),
+(4, 'Toshiba'),
+(5, 'Dell'),
+(6, 'Tefal'),
+(7, 'Kenwood'),
+(8, 'Panasonic');
 
 -- --------------------------------------------------------
 

@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.hillel.it.network.model.entity.Ad;
+import org.hillel.it.network.model.entity.Device;
 import org.hillel.it.network.model.entity.Favorite;
 import org.hillel.it.network.model.entity.Group;
+import org.hillel.it.network.model.entity.Manufacturer;
 import org.hillel.it.network.model.entity.User;
 import org.hillel.it.network.model.entity.Message;
 import org.hillel.it.network.model.entity.Wall;
@@ -34,6 +36,15 @@ public interface Service {
 	List <Ad> getFavorites(int userId);
 	public boolean matchFavorite (Ad ad, Object user);
 
+	List <Manufacturer> getManufacturers();
+	boolean addManufacturer(Manufacturer manufacturer);
+	void delManufacturer(Manufacturer manufacturer);
+
+	List <Device> getDevices();
+	List <Device> getDevicesByManufacturer(int idManufacturer);
+	boolean addDevice(Device device);
+	void delDevice(Device device);
+	
 	void saveGroup (Group group);
 	void delGroup (Group group);
 	Group searchGroup (String searchParam);

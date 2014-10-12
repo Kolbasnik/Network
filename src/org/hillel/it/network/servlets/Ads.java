@@ -28,7 +28,10 @@ public class Ads extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
+
 		Service service = (Service) session.getAttribute("service");
+		request.setCharacterEncoding("UTF-8");
 		String url = request.getQueryString();
 		
 		System.out.println("url " +url);
@@ -78,6 +81,8 @@ public class Ads extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
+
 		Service service = (Service) session.getAttribute("service");
 		User user = (User) session.getAttribute("user");
 		
@@ -86,7 +91,7 @@ public class Ads extends HttpServlet {
 		if (url.equalsIgnoreCase("new") && url != null) {
 			// Create new ad
 			String manufacturer=request.getParameter("manufacturer");
-			String model=request.getParameter("model");
+			String model=request.getParameter("device")+" "+request.getParameter("model");
 			String note=request.getParameter("note");
 			String sPrice = request.getParameter("price");
 			String sLifeTime = request.getParameter("lifetime");
