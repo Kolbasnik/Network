@@ -346,19 +346,20 @@ public class ServiceImpl implements Service, Serializable{
 		}
 	}
 
-	public void delFavorite(int ad_id) {
-		favoriteRepository.delFavorite(ad_id);
+	public void delFavorite(int adId, int userId) {
+		favoriteRepository.delFavorite(adId, userId);
 	}
 
 	public void delFavoriteByUser(int userId) {
-		List<Favorite> favoriteAds = null; //new ArrayList<Favorite>();
+/*		List<Favorite> favoriteAds = null; //new ArrayList<Favorite>();
 		
 		favoriteAds=favoriteRepository.getFavorites(userId);
 		if (favoriteAds != null) {
 			for (int i=0; i<favoriteAds.size(); i++) {
-				favoriteRepository.delFavorite(favoriteAds.get(i).getAdId());
+				favoriteRepository.delFavorite(favoriteAds.get(i).getAdId(),userId);
 			}
 		}
+*/		
 	}
 
 	public List<Ad> getFavorites(int userId) {

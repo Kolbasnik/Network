@@ -61,7 +61,7 @@
                 			<td><a href="ads?id&<%=id%>"><%=ads.get(i).getPrice()%></a></td>
                 			<td><a href="ads?id&<%=id%>"><%=ads.get(i).getCreateDate().toString().substring(0, 10)%></a></td>
                 			<%if (service.matchFavorite(ads.get(i), session.getAttribute("user"))){ %>
-                 				<td><a href="del?add&<%=id%>">Del from favorite</a></td> 
+                 				<td><a href="ads?del&<%=id%>">Del from favorite</a></td> 
                 			<%}
                 			else {%>
                 				<td><a href="ads?add&<%=id%>">Add to favorite</a></td>
@@ -77,7 +77,7 @@
 
 			<a class="show-btn" href = "javascript:void(0)" onclick = "document.getElementById('new_ad').style.display='block';document.getElementById('fade').style.display='block'">Ad new ads</a>
 			<div id="new_ad" class="envelope">
-<!-- 
+ 
 				<a class="close-btn" title="Закрыть" href="javascript:void(0)" onclick = "document.getElementById('new_ad').style.display='none';document.getElementById('fade').style.display='none'"></a>
 				<div class="title">Add your new adssss</div>
 				<form method="POST" action="ads?new">
@@ -109,7 +109,7 @@
 <!--					<input type="text" name="note" class="note" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'* Примичание':this.value;" value="* Note"/>-->
 					<input type="submit" name="send" value="Отправить" class="send-message">
 				</form>
--->
+
 			</div>
 			<div id="fade" class="black-overlay">
 			</div>

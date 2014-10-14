@@ -31,7 +31,7 @@ public interface Service {
 	List <Ad> getOwnerAds (int idOwner);
 	
 	void addFavorite(Favorite favoriteAd);
-	void delFavorite(int ad_id);
+	void delFavorite(int adId, int userId);
 	void delFavoriteByUser (int userId);
 	List <Ad> getFavorites(int userId);
 	public boolean matchFavorite (Ad ad, Object user);

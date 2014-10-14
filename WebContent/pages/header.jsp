@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<script type="text/javascript" src="js/validate.js"></script>
-	<script type="text/javascript" src="js/jquery.js"></script>
+ 	<script type="text/javascript" src="js/jquery.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/ad.css">
  	<link rel="stylesheet" type="text/css" href="css/register.css"> 

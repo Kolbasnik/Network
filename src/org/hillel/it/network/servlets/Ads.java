@@ -60,13 +60,23 @@ public class Ads extends HttpServlet {
 		if (url.startsWith("add") && url != null) {
 			String sId = url.split("&")[1];
 			if (!sId.isEmpty() || sId != null) {
-				int ad_id=Integer.parseInt(sId);
-				int user_ad = user.getId();
+				int adId=Integer.parseInt(sId);
+				int userId = user.getId();
 				
-				Favorite favoriteAd = new Favorite(ad_id, user_ad);
+				Favorite favoriteAd = new Favorite(adId, userId);
 				service.addFavorite(favoriteAd); 
 			}
 		}
+
+		if (url.startsWith("del") && url != null) {
+			String sId = url.split("&")[1];
+			if (!sId.isEmpty() || sId != null) {
+				int adId=Integer.parseInt(sId);
+				int userId = user.getId();
+				service.delFavorite(adId, userId); 
+			}
+		}
+
 		
 		if (url.startsWith("id") && url != null) {
 			int id=Integer.parseInt(url.split("&")[1]);

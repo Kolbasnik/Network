@@ -6,7 +6,7 @@ import org.hillel.it.network.model.entity.Favorite;
 
 public interface FavoriteRepository {
 	void addFavorite(Favorite favoriteAd);
-	void delFavorite(int ad_id);
+	void delFavorite(int adId, int userId);
 	List <Favorite> getFavorites(int userId);
 	public boolean matchFavorite(int adId, int userId);
 }

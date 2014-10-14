@@ -47,7 +47,9 @@ public class DBAdRepository implements AdRepository{
 	        session.beginTransaction();
 	        Query query = session.createSQLQuery("select * from ads where ad_id = :id").addEntity(Ad.class);
 			Ad ad = (Ad) query.setInteger("id", id).list().get(0);
- 	        session.delete(ad);
+			if (ad != null) {
+				session.delete(ad);
+			}
 	        session.getTransaction().commit();
 	        isDel = true;
 	    } catch (Exception e) {
